@@ -12,9 +12,9 @@
 */
 
 
-Route::get('/home','homepageController@index');
 Route::get('/','homepageController@index');
-
+Route::get('/home','homepageController@index');
+Route::get('/menu','menupageController@index');
 // Route::get('/', 'loginController@index');
 // Route::post('/', 'loginController@login');
 // Route::get('/login', 'loginController@index');
