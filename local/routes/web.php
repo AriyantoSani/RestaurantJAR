@@ -15,17 +15,16 @@
 Route::get('/','homepageController@index');
 Route::get('/home','homepageController@index');
 Route::get('/menu','menupageController@index');
-// Route::get('/', 'loginController@index');
-// Route::post('/', 'loginController@login');
-// Route::get('/login', 'loginController@index');
-// Route::post('/login', 'loginController@login');
-// Route::get('/createaccount', 'loginController@createaccountIndex');
-// Route::post('/createaccount', 'loginController@createaccount');
-// // });
-// Route::group(['middleware' => 'usersession'], function () {
-// Route::get('/', 'homeController@Index');
-// Route::get('/home', 'homeController@Index');
-// Route::get('/logout', 'homeController@logout');
-// Route::get('/topup', 'homeController@topupindex');
-// Route::post('/topup', 'homeController@topup');
-// });
+Route::get('/about','homepageController@indexAbout');
+Route::get('/gallery','homepageController@indexGallery');
+Route::get('/table/{id}','menupageController@index');
+Route::get('/table/{id}/buy/{item}','menupageController@buy');
+Route::get('/orderlist/{id}','menupageController@indexOrder');
+Route::get('/book','bookpageController@index');
+Route::get('/login','loginController@index');
+Route::post('/login','loginController@login');
+//login Require
+// Route::group(['middleware'=> 'checkuser'],function(){
+
+
+// }

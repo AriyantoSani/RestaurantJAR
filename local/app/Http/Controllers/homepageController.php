@@ -13,4 +13,12 @@ class homepageController extends Controller
     {
         return view('home');
     }
+    public function indexAbout()
+    {
+        return view('about');
+    }
+    public function indexGallery()
+    {
+        return view('gallery');
+    }
 }
