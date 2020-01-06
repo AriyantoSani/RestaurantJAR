@@ -24,6 +24,8 @@ class loginController extends Controller
         // return $data->username;
         if ($data) { //apakah email tersebut ada atau tidak
             if (md5($password) == $data->password) {
+
+                Session::put('id', $data->id);
                 Session::put('username', $data->username);
                 Session::put('first_name', $data->first_name);
                 Session::put('last_name', $data->last_name);

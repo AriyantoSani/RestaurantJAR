@@ -26,10 +26,9 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-
                     <div class="card">
                         <div class="card-header border-0">
-                            <h3 class="card-title">Products</h3>
+                            <h3 class="card-title">Belum Bayar</h3>
                             <div class="card-tools">
                                 <a href="#" class="btn btn-tool btn-sm">
                                     <i class="fas fa-download"></i>
@@ -44,9 +43,8 @@
                                 <thead>
                                     <tr>
                                         <th>Table</th>
-                                        <th>Price</th>
+                                        <th>Total Price</th>
                                         <th>Amount</th>
-                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -62,10 +60,12 @@
                                             {{$o->amount}}
                                         </td>
                                         <td>
-                                            {{-- status --}}
-                                        </td>
-                                        <td>
-                                            <button class="btn ">Detail</button>
+                                            <a href="detailCashier/{{$o->id}}">
+                                                <button class="btn ">Detail</button>
+                                            </a>
+                                            <a href="checkout/{{$o->id}}">
+                                                <button class="btn ">Checkout</button>
+                                            </a>
                                         </td>
                                     </tr>
                                     <?php }?>
@@ -74,6 +74,50 @@
                         </div>
                     </div>
                     <!-- /.card -->
+                    <div class="card">
+                        <div class="card-header border-0">
+                            <h3 class="card-title">Sudah Bayar</h3>
+                            <div class="card-tools">
+                                <a href="#" class="btn btn-tool btn-sm">
+                                    <i class="fas fa-download"></i>
+                                </a>
+                                <a href="#" class="btn btn-tool btn-sm">
+                                    <i class="fas fa-bars"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-striped table-valign-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Table</th>
+                                        <th>Time</th>
+                                        <th>Price</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($orderb as $o2) {
+                                            ?>
+                                    <tr>
+                                        <td>
+                                            Table {{$o2->no_table}}
+                                        </td>
+                                        <td>{{$o2->total_price}}</td>
+                                        <td>
+                                            {{$o2->amount}}
+                                        </td>
+                                        <td>
+                                            <a href="checkout/{{$o2->id}}">
+                                                <button class="btn ">Print</button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <?php }?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- /.row -->

@@ -33,12 +33,14 @@ Route::group(
     function () {
         //Cashier
         Route::get('/homeCashier', 'indexController@indexCashier')->middleware('checkcashier');
+        Route::get('/detailCashier/{id}', 'foodController@detailOrderCashier')->middleware('checkcashier');
+        Route::get('/checkout/{order_id}','foodController@checkout')->middleware('checkcashier');
 
         //Waiter
         Route::get('/homeWaiter', 'indexController@indexWaiter')->middleware('checkwaiter');
         Route::get('/detail/{id}', 'indexController@detailOrder')->middleware('checkwaiter');
         Route::get('/detail/antar/{id}', 'indexController@antarOrder')->middleware('checkwaiter');
-        
+
         //Kitchen
         Route::get('/homeKitchen', 'indexController@indexKitchen')->middleware('checkkitchen');
         Route::get('/changeStock/{id}', 'foodController@changeStock')->middleware('checkkitchen');

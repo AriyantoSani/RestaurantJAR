@@ -65,10 +65,8 @@ class menupageController extends Controller
         ->where('id',$orderid)
         ->where('status',1)
         ->first();
-        DB::table('bill')->insert(['amount'=>$order->amount, 'order_id'=>$order->id,'user_id'=>2,'paymentMethod_id'=>1]);
-        DB::table('order')->where('id',$orderid)->update(['status' => 0]);
+        DB::table('bill')->insert(['amount'=>$order->amount, 'order_id'=>$order->id,'user_id'=>NULL,'paymentMethod_id'=>1 ,'status'=>1]);
         Session::flush();
-        DB::table('table')->where('id',$id)->update(['status' => 0]);
         return redirect()->back();
     }
 }
