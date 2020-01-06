@@ -7,9 +7,11 @@
         <div class="row justify-content-center">
             <div class="col-md-10 mb-5 text-center">
                 <ul class="product-category">
+
+                    <li><a href="#" class="{{request()->is('table/*') ? 'active' : ''}}">All</a></li>
                     <?php foreach ($category as $cat) {
                      ?>
-                    <li><a href="#" class="active">{{$cat->name}}</a></li>
+                    <li><a href="#" class="">{{$cat->name}}</a></li>
                     <?php } ?>
                 </ul>
             </div>
@@ -65,6 +67,11 @@
                 </div>
             </div>
         </div>
+        <form method="POST">
+            {{ csrf_field() }}
+            <button type="submit">Order</button>
+        </form>
+        <a href="../orderlist/{{$id}}"> <button type="button" class="btn btn-primary" >Order List</button></a>
     </div>
 </section>
 

@@ -23,8 +23,18 @@ Route::get('/orderlist/{id}','menupageController@indexOrder');
 Route::get('/book','bookpageController@index');
 Route::get('/login','loginController@index');
 Route::post('/login','loginController@login');
+Route::post('/table/{id}','menupageController@createOrder');
+Route::get('orderlist/checkout/{id}/{orderid}','menupageController@checkoutOrder');
+Route::get('/logout','loginController@logout');
+
 //login Require
-// Route::group(['middleware'=> 'checkuser'],function(){
+Route::group(['middleware'=> 'checkuser'],function(){
+    Route::get('/home','indexController@indexCashier')->middleware('checkcashier');
+    Route::get('/index','indexController@indexCashier')->middleware('checkcashier');
 
-
-// }
+    Route::get('/home','indexController@indexWaiter')->middleware('checkwaiter');
+    Route::get('/detail/{id}','indexController@detailOrder')->middleware('checkwaiter');
+    Route::get('/index','indexController@indexWaiter')->middleware('checkwaiter');
+    Route::get('/detail/antar/{id}','indexController@antarOrder')->middleware('checkwaiter');
+}
+);

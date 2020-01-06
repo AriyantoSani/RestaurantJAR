@@ -11,6 +11,7 @@ class homepageController extends Controller
 {
     public function index()
     {
+        Session::flush();
         return view('home');
     }
     public function indexAbout()
