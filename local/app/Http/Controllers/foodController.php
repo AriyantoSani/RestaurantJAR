@@ -14,7 +14,7 @@ class foodController extends Controller
         $orderDetail = DB::table('orderdetail')
             ->where('orderdetail.order_id', $id)
 
-            ->where('orderdetail.status','!=',2)
+            ->where('orderdetail.status', '!=', 2)
             ->join('food', 'orderdetail.food_id', 'food.id')
             ->select('food.*', 'orderdetail.*')
             ->get();
@@ -76,7 +76,7 @@ class foodController extends Controller
             ->where('id', $orderid)
             ->where('status', 1)
             ->first();
-        DB::table('bill')->insert(['amount' => $order->amount, 'order_id' => $orderid, 'user_id' => $user, 'paymentMethod_id' => $pembayaran, 'status' => 0]);
+        DB::table('bill')->insert(['amount' => $order->amount, 'order_id' => $orderid, 'user_id' => $user, 'paymentMethod_id' => $pembayaran]);
         DB::table('order')->where('id', $orderid)->update(['status' => 0]);
         $order = DB::table('order')->where('id', $orderid)->first();
         $id = $order->table_id;
@@ -87,7 +87,7 @@ class foodController extends Controller
     {
         $orderDetail = DB::table('orderdetail')
             ->where('orderdetail.order_id', $id)
-            ->where('orderdetail.status','!=',2)
+            ->where('orderdetail.status', '!=', 2)
             ->join('food', 'orderdetail.food_id', 'food.id')
             ->select('food.*', 'orderdetail.*', 'food.id AS foodid')
             ->get();
@@ -98,7 +98,7 @@ class foodController extends Controller
     {
         $split = $req->split;
 
-        $order = DB::table('order')->where('order.id', $id)->leftjoin('orderdetail','order.id','orderdetail.order_id')->first();
+        $order = DB::table('order')->where('order.id', $id)->leftjoin('orderdetail', 'order.id', 'orderdetail.order_id')->first();
         $total = 0;
         $totalq = 0;
         foreach ($split as $s) {
@@ -107,13 +107,13 @@ class foodController extends Controller
             $total = $total + $orders->price * $orders->quantity;
             $totalq = $totalq + $orders->quantity;
         }
-        $newOrder =DB::table('order')->insertGetId(['total_price'=>$total,'amount'=>$totalq,'status'=>1,'table_id'=>$order->table_id]);
+        $newOrder = DB::table('order')->insertGetId(['total_price' => $total, 'amount' => $totalq, 'status' => 0, 'table_id' => $order->table_id]);
         $totalprice = $order->total_price - $total;
         $totalamount = $order->amount - $totalq;
-        DB::table('order')->where('order.id',$id)->update(['total_price'=>$totalprice,'amount'=>$totalamount]);
-        foreach($split as $s){
-            $orders = DB::table('orderdetail')->join('food', 'orderdetail.food_id', 'food.id')->where('orderdetail.id', $s)->select('food.*','orderdetail.*')->first();
-            DB::table('orderdetail')->insert(['order_id'=>$newOrder,'status'=>$orders->status,'food_id'=>$orders->food_id,'quantity'=>$orders->quantity]);
+        DB::table('order')->where('order.id', $id)->update(['total_price' => $totalprice, 'amount' => $totalamount]);
+        foreach ($split as $s) {
+            $orders = DB::table('orderdetail')->join('food', 'orderdetail.food_id', 'food.id')->where('orderdetail.id', $s)->select('food.*', 'orderdetail.*')->first();
+            DB::table('orderdetail')->insert(['order_id' => $newOrder, 'status' => $orders->status, 'food_id' => $orders->food_id, 'quantity' => $orders->quantity]);
             DB::table('orderdetail')->where('orderdetail.id', $s)->update(['status' => 2]);
         }
         $user = session::get('id');
@@ -121,9 +121,9 @@ class foodController extends Controller
         // $pembayaran = $req->pembayaran;
         $order = DB::table('order')
             ->where('id', $orderid)
-            ->where('status', 1)
             ->first();
-        DB::table('bill')->insert(['amount' => $order->amount, 'order_id' => $orderid, 'user_id' => $user, 'paymentMethod_id' => 1, 'status' => 0]);
+        $a = $order->amount;
+        DB::table('bill')->insert(['amount' => $a, 'order_id' => $orderid, 'user_id' => $user, 'paymentMethod_id' => 1]);
         // DB::table('order')->where('id', $id)->update(['status' => 2]);
         return redirect()->back();
     }

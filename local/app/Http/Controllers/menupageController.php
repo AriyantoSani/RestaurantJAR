@@ -13,7 +13,7 @@ class menupageController extends Controller
     {
         Session::put('table', $id);
         $category = DB::table('foodcategory')->get();
-        $food = DB::table('food')->where('status',1)->get();
+        $food = DB::table('food')->where('status',1)->paginate(1);
 
         $table = DB::table('table')
         ->where('id',$id)
@@ -91,6 +91,7 @@ class menupageController extends Controller
         foreach($itemss as $i){
             DB::table('orderDetail')->insert(['food_id'=>$i , 'order_id'=>$order->id,'quantity'=>$newItem[$i],'status'=>0]);
         }
+        DB::table('order')->where('table_id',$id)->where('status',1)->update(['amount'=>$amount,'total_price'=>$totalprice]);
         Session::flush();
         return redirect()->back();
     }
