@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class CheckAdmin
+class CheckKitchen
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class CheckAdmin
     public function handle($request, Closure $next)
     {
        $value = $request->session()->get('role');
-       if($value != "Admin")
+       if($value != "Kitchen")
        {
           return redirect()->back();
        }
