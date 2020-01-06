@@ -12,29 +12,37 @@
 */
 
 
-Route::get('/','homepageController@index');
-Route::get('/home','homepageController@index');
-Route::get('/menu','menupageController@index');
-Route::get('/about','homepageController@indexAbout');
-Route::get('/gallery','homepageController@indexGallery');
-Route::get('/table/{id}','menupageController@index');
-Route::get('/table/{id}/buy/{item}','menupageController@buy');
-Route::get('/orderlist/{id}','menupageController@indexOrder');
-Route::get('/book','bookpageController@index');
-Route::get('/login','loginController@index');
-Route::post('/login','loginController@login');
-Route::post('/table/{id}','menupageController@createOrder');
-Route::get('orderlist/checkout/{id}/{orderid}','menupageController@checkoutOrder');
-Route::get('/logout','loginController@logout');
+Route::get('/', 'homepageController@index');
+Route::get('/home', 'homepageController@index');
+Route::get('/menu', 'menupageController@index');
+Route::get('/about', 'homepageController@indexAbout');
+Route::get('/gallery', 'homepageController@indexGallery');
+Route::get('/table/{id}', 'menupageController@index');
+Route::get('/table/{id}/buy/{item}', 'menupageController@buy');
+Route::get('/orderlist/{id}', 'menupageController@indexOrder');
+Route::get('/book', 'bookpageController@index');
+Route::get('/login', 'loginController@index');
+Route::post('/login', 'loginController@login');
+Route::post('/table/{id}', 'menupageController@createOrder');
+Route::get('orderlist/checkout/{id}/{orderid}', 'menupageController@checkoutOrder');
+Route::get('/logout', 'loginController@logout');
 
 //login Require
-Route::group(['middleware'=> 'checkuser'],function(){
-    Route::get('/home','indexController@indexCashier')->middleware('checkcashier');
-    Route::get('/index','indexController@indexCashier')->middleware('checkcashier');
+Route::group(
+    ['middleware' => 'checkuser'],
+    function () {
+        //Cashier
+        Route::get('/homeCashier', 'indexController@indexCashier')->middleware('checkcashier');
 
-    Route::get('/home','indexController@indexWaiter')->middleware('checkwaiter');
-    Route::get('/detail/{id}','indexController@detailOrder')->middleware('checkwaiter');
-    Route::get('/index','indexController@indexWaiter')->middleware('checkwaiter');
-    Route::get('/detail/antar/{id}','indexController@antarOrder')->middleware('checkwaiter');
-}
+        //Waiter
+        Route::get('/homeWaiter', 'indexController@indexWaiter')->middleware('checkwaiter');
+        Route::get('/detail/{id}', 'indexController@detailOrder')->middleware('checkwaiter');
+        Route::get('/detail/antar/{id}', 'indexController@antarOrder')->middleware('checkwaiter');
+        
+        //Kitchen
+        Route::get('/homeKitchen', 'indexController@indexKitchen')->middleware('checkkitchen');
+        Route::get('/changeStock/{id}', 'foodController@changeStock')->middleware('checkkitchen');
+
+        //Admin
+    }
 );

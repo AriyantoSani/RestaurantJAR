@@ -41,9 +41,8 @@ class menupageController extends Controller
         $newItem = array_count_values($items);
         $itemss = array_unique($items);
         foreach($itemss as $i){
-            DB::table('orderDetail')->insert(['food_id'=>$i , 'order_id'=>$newID,'quantity'=>$newItem[$i]]);
+            DB::table('orderDetail')->insert(['food_id'=>$i , 'order_id'=>$newID,'quantity'=>$newItem[$i],'status'=>0]);
         }
-
         DB::table('table')->where('id',$id)->update(['status' => 1]);
         return redirect()->back();
     }

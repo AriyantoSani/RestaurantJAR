@@ -49,7 +49,7 @@
                     </table>
                 </div>
             </div>
-        </div>sistem yaitu guest, waiter, cashier, kitchen, admin
+        </div>
         <div class="row justify-content-end">
             <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
                 <div class="cart-total mb-3">
