@@ -63,10 +63,21 @@
                                             <a href="detailCashier/{{$o->id}}">
                                                 <button class="btn ">Detail</button>
                                             </a>
-                                            <a href="checkout/{{$o->id}}">
+                                            <form method="POST">
+                                                {{ csrf_field() }}
                                                 <button class="btn ">Checkout</button>
-                                            </a>
+                                                <input type="hidden" name="order_id" value="{{$o->id}}">
+                                                <select name="pembayaran">
+                                                    <option value="">--Select--</option>
+                                                    <?php foreach($payment  as $p){ ?>
+                                                    <option value="{{$p->id}}">{{$p->name}}</option>
+                                                    <?php }?>
+                                                </select>
+                                            </form>
                                         </td>
+
+
+
                                     </tr>
                                     <?php }?>
                                 </tbody>
@@ -107,9 +118,10 @@
                                         <td>
                                             {{$o2->amount}}
                                         </td>
+
                                         <td>
-                                            <a href="checkout/{{$o2->id}}">
-                                                <button class="btn ">Print</button>
+                                            <a href="printCashier/{{$o2->id}}">
+                                                <button class="btn ">Detail</button>
                                             </a>
                                         </td>
                                     </tr>

@@ -29,7 +29,7 @@
 
                     <div class="card">
                         <div class="card-header border-0">
-                            <h3 class="card-title">Pesanan</h3>
+                            <h3 class="card-title">Products</h3>
                             <div class="card-tools">
                                 <a href="#" class="btn btn-tool btn-sm">
                                     <i class="fas fa-download"></i>
@@ -40,35 +40,45 @@
                             </div>
                         </div>
                         <div class="card-body table-responsive p-0">
-                            <table class="table table-striped table-valign-middle">
-                                <thead>
-                                    <tr>
-                                        <th>Table</th>
-                                        <th>Price</th>
-                                        <th>Amount</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($order as $o) {
-                                            ?>
-                                    <tr>
-                                        <td>
-                                            Table {{$o->no_table}}
-                                        </td>
-                                        <td>{{$o->total_price}}</td>
-                                        <td>
-                                            {{$o->amount}}
-                                        </td>
 
-                                        <td>
-                                        <button class="btn "><a href="detail/{{$o->order_id}}"> Detail</a></button>
-                                        <button class="btn "><a href="split/{{$o->order_id}}"> Split</a></button>
-                                        </td>
-                                    </tr>
-                                    <?php }?>
-                                </tbody>
-                            </table>
+
+                            <form method="POST">{{ csrf_field() }}
+                                <table class="table table-striped table-valign-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Price</th>
+                                            <th>Quantity</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($order as $o) {
+                                            ?>
+                                        <tr>
+                                            <td>
+                                                {{$o->name}}
+                                            </td>
+                                            <td>{{$o->price}}</td>
+                                            <td>{{$o->quantity}}</td>
+                                            <td>
+                                                <?php if($o->status == 0) {
+                                                echo "Belum Diantar";
+                                            }
+                                            else if($o->status == 1){
+                                                echo "Sudah Diantar";
+                                            }?>
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" name="split[]" value="{{$o->id}}">
+
+                                            </td>
+                                        </tr>
+                                        <?php }?>
+                                    </tbody>
+                                </table>
+                                <button type="submit">Split Bill</button></form>
                         </div>
                     </div>
                     <!-- /.card -->

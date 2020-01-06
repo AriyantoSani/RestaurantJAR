@@ -29,7 +29,7 @@
 
                     <div class="card">
                         <div class="card-header border-0">
-                            <h3 class="card-title">Pesanan</h3>
+                            <h3 class="card-title">Products</h3>
                             <div class="card-tools">
                                 <a href="#" class="btn btn-tool btn-sm">
                                     <i class="fas fa-download"></i>
@@ -43,10 +43,10 @@
                             <table class="table table-striped table-valign-middle">
                                 <thead>
                                     <tr>
-                                        <th>Table</th>
+                                        <th>Name</th>
                                         <th>Price</th>
-                                        <th>Amount</th>
-                                        <th>Action</th>
+                                        <th>Quantity</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -54,16 +54,20 @@
                                             ?>
                                     <tr>
                                         <td>
-                                            Table {{$o->no_table}}
+                                            {{$o->name}}
                                         </td>
-                                        <td>{{$o->total_price}}</td>
+                                        <td>{{$o->price}}</td>
+                                        <td>{{$o->quantity}}</td>
                                         <td>
-                                            {{$o->amount}}
+                                            <?php if($o->status == 0) {
+                                                echo "Belum Diantar";
+                                            }
+                                            else if($o->status == 1){
+                                                echo "Sudah Diantar";
+                                            }?>
                                         </td>
-
                                         <td>
-                                        <button class="btn "><a href="detail/{{$o->order_id}}"> Detail</a></button>
-                                        <button class="btn "><a href="split/{{$o->order_id}}"> Split</a></button>
+                                            <button onclick="myFunction()">Print this page</button>
                                         </td>
                                     </tr>
                                     <?php }?>
@@ -88,4 +92,12 @@
 </aside>
 <!-- /.control-sidebar -->
 
+@endsection
+
+@section('js')
+<script>
+    function myFunction() {
+      window.print();
+    }
+</script>
 @endsection

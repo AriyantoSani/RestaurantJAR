@@ -21,7 +21,8 @@ class indexController extends Controller
             ->where('order.status', 0)
             ->select('table.*', 'order.*')
             ->get();
-        return view('cashier.indexCashier', ['order' => $order,'orderb'=>$orderb]);
+        $payment = DB::table('paymentmethod')->get();
+        return view('cashier.indexCashier', ['order' => $order,'orderb'=>$orderb ,'payment' =>$payment]);
     }
     public function indexWaiter()
     {
@@ -48,19 +49,5 @@ class indexController extends Controller
         // return $order;
         return view('kitchen.indexKitchen', ['order' => $order, 'food' => $food]);
     }
-    public function detailOrder(Request $req, $id)
-    {
-        $orderDetail = DB::table('orderdetail')
-            ->where('orderdetail.order_id', $id)
-            ->join('food', 'orderdetail.food_id', 'food.id')
-            ->select('food.*', 'orderdetail.*')
-            ->get();
-        // return $orderDetail;
-        return view('waiter.detailWaiter', ['order' => $orderDetail]);
-    }
-    public function antarOrder(Request $req, $id)
-    {
-        DB::table('orderdetail')->where('id', $id)->update(['status' => 1]);
-        return back();
-    }
+
 }

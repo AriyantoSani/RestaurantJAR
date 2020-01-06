@@ -31,7 +31,7 @@
 
                                 <td class="product-name">
                                 <h3>{{$d->name}}</h3>
-                                    <p>Far far away, behind the word mountains, far from the countries</p>
+                                <p>{{$d->description}}</p>
                                 </td>
 
                                 <td class="price">${{$d->price}}</td>
@@ -59,7 +59,7 @@
                     <span>${{$total}}</span>
                     </p>
                 </div>
-            <p><a href="checkout/{{$id}}/{{$order_id}}" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+            {{-- <p><a href="checkout/{{$id}}/{{$order_id}}" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p> --}}
             </div>
         </div>
     </div>
