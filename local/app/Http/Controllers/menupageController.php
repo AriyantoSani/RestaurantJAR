@@ -13,8 +13,16 @@ class menupageController extends Controller
     {
         Session::put('table', $id);
         $category = DB::table('foodcategory')->get();
-        $food = DB::table('food')->get();
-        return view('menu', ['id' => $id, 'category' => $category, 'food' => $food]);
+        $food = DB::table('food')->where('status',1)->paginate(12);
+
+        $table = DB::table('table')
+        ->where('id',$id)
+        ->first();
+
+
+        $status = $table->status;
+        // return $status;
+        return view('menu', ['id' => $id, 'category' => $category, 'food' => $food,'status'=>$status]);
     }
     public function buy(Request $req, $id, $item)
     {
@@ -52,10 +60,10 @@ class menupageController extends Controller
         ->where('table_id',$id)
         ->where('status',1)
         ->first();
-
         $detail = DB::table('orderdetail')
         ->where('order_id',$order->id)
         ->join('food','orderdetail.food_id','food.id')
+        ->where('orderdetail.status','!=',2)
         ->get();
 
         return view('orderlist', ['id' => $id ,'order'=>$detail,'order_id'=>$order->id]);
@@ -68,5 +76,42 @@ class menupageController extends Controller
         DB::table('bill')->insert(['amount'=>$order->amount, 'order_id'=>$order->id,'user_id'=>NULL,'paymentMethod_id'=>1 ,'status'=>1]);
         Session::flush();
         return redirect()->back();
+    }
+    public function updateOrder(Request $req,$id){
+        $order= DB::table('order')->where('table_id',$id)->where('status',1)->first();
+        $items = Session::get('item');
+        $amount = count(Session::get('item')) +$order->amount;
+        $totalprice=$order->total_price;
+        foreach($items as $i){
+         $itemm  = DB::table('food')->where('id', $i)->first();
+         $price = $itemm->price;
+         $totalprice = $totalprice + $price;
+        }
+        $newItem = array_count_values($items);
+        $itemss = array_unique($items);
+        foreach($itemss as $i){
+            DB::table('orderDetail')->insert(['food_id'=>$i , 'order_id'=>$order->id,'quantity'=>$newItem[$i],'status'=>0]);
+        }
+        DB::table('order')->where('table_id',$id)->where('status',1)->update(['amount'=>$amount,'total_price'=>$totalprice]);
+        Session::flush();
+        return redirect()->back();
+    }
+    public function filterindex(Request $req, $id,$category)
+    {
+        Session::put('table', $id);
+        $cat = DB::table('foodcategory')->get();
+        $food = DB::table('food')
+        ->where('status',1)
+        ->where('food_category_id',$category)
+        ->paginate(12);
+
+        $table = DB::table('table')
+        ->where('id',$id)
+        ->first();
+
+
+        $status = $table->status;
+        // return $status;
+        return view('menu', ['id' => $id, 'category' => $cat, 'food' => $food,'status'=>$status]);
     }
 }

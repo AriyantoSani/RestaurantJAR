@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row height align-items-center justify-content-center">
             <div class="home-banner-content col-lg-5">
-                <h1>Rooftop</h1>
+                <h1 align="center">RestaurantJAR</h1>
                 <hr>
                 <p>A Fine Dinning Restaurant</p>
             </div>

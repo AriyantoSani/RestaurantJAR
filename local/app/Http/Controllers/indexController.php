@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use DB;
-use Session;
 
 class indexController extends Controller
 {
@@ -14,24 +12,36 @@ class indexController extends Controller
         $order = DB::table('order')
             ->join('table', 'table.id', 'order.table_Id')
             ->where('order.status', 1)
+            ->where('order.status', '!=', 2)
             ->select('table.*', 'order.*')
             ->get();
         $orderb = DB::table('order')
             ->join('table', 'table.id', 'order.table_Id')
             ->where('order.status', 0)
+            ->where('order.status', '!=', 2)
             ->select('table.*', 'order.*')
             ->get();
-        return view('cashier.indexCashier', ['order' => $order,'orderb'=>$orderb]);
+        $payment = DB::table('paymentmethod')->get();
+        return view('cashier.indexCashier', ['order' => $order, 'orderb' => $orderb, 'payment' => $payment]);
     }
     public function indexWaiter()
     {
         $order = DB::table('order')
             ->join('table', 'table.id', 'order.table_Id')
             ->where('order.status', 1)
+            ->where('order.status', '!=', 2)
             ->select('order.id as order_id', 'order.*', 'table.*')
             ->get();
-        // return $order;
-        return view('waiter.indexWaiter', ['order' => $order]);
+
+        $orderb = DB::table('order')
+            ->join('table', 'table.id', 'order.table_Id')
+            ->where('order.status', 0)
+            ->where('order.status', '!=', 2)
+            ->select('table.*', 'order.*')
+            ->get();
+
+        $payment = DB::table('paymentmethod')->get();
+        return view('waiter.indexWaiter', ['order' => $order, 'orderb' => $orderb, 'payment' => $payment]);
     }
     public function indexKitchen()
     {
@@ -48,19 +58,5 @@ class indexController extends Controller
         // return $order;
         return view('kitchen.indexKitchen', ['order' => $order, 'food' => $food]);
     }
-    public function detailOrder(Request $req, $id)
-    {
-        $orderDetail = DB::table('orderdetail')
-            ->where('orderdetail.order_id', $id)
-            ->join('food', 'orderdetail.food_id', 'food.id')
-            ->select('food.*', 'orderdetail.*')
-            ->get();
-        // return $orderDetail;
-        return view('waiter.detailWaiter', ['order' => $orderDetail]);
-    }
-    public function antarOrder(Request $req, $id)
-    {
-        DB::table('orderdetail')->where('id', $id)->update(['status' => 1]);
-        return back();
-    }
+
 }

@@ -23,39 +23,48 @@
 
                     <div class="card">
                         <div class="card-header border-0">
-                            <h3 class="card-title">Detail</h3>
+                            <h3 class="card-title">Products</h3>
+
                         </div>
                         <div class="card-body table-responsive p-0">
-                            <table class="table table-striped table-valign-middle" id="Datatables">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Price</th>
-                                        <th>Quantity</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($order as $o) {
+
+                            <form method="POST">{{ csrf_field() }}
+                                <table id="Datatables" class="table table-striped table-valign-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Price</th>
+                                            <th>Quantity</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($order as $o) {
                                             ?>
-                                    <tr>
-                                        <td>
-                                            {{$o->name}}
-                                        </td>
-                                        <td>{{$o->price}}</td>
-                                        <td>{{$o->quantity}}</td>
-                                        <td>
-                                            <?php if($o->status == 0) {
+                                        <tr>
+                                            <td>
+                                                {{$o->name}}
+                                            </td>
+                                            <td>{{$o->price}}</td>
+                                            <td>{{$o->quantity}}</td>
+                                            <td>
+                                                <?php if($o->status == 0) {
                                                 echo "Belum Diantar";
                                             }
                                             else if($o->status == 1){
                                                 echo "Sudah Diantar";
                                             }?>
-                                        </td>
-                                    </tr>
-                                    <?php }?>
-                                </tbody>
-                            </table>
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" name="split[]" value="{{$o->id}}">
+
+                                            </td>
+                                        </tr>
+                                        <?php }?>
+                                    </tbody>
+                                </table>
+                                <button type="submit">Split Bill</button></form>
                         </div>
                     </div>
                     <!-- /.card -->
@@ -81,6 +90,5 @@
     $(document).ready( function () {
     $('#Datatables').DataTable();
 } );
-
 </script>
 @endsection

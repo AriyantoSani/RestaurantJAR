@@ -1,5 +1,11 @@
 @extends('layouts.menulayout')
-
+@section('css')
+<style>
+    .navbar {
+        background: #ADD8E6;
+    }
+</style>
+@endsection
 @section('content')
 
 <section class="ftco-section">
@@ -8,10 +14,13 @@
             <div class="col-md-10 mb-5 text-center">
                 <ul class="product-category">
 
-                    <li><a href="#" class="{{request()->is('table/*') ? 'active' : ''}}">All</a></li>
+                    <li><a href="{{asset('table/'.$id)}}"
+                            class="{{request()->is('table/'.$id) ? 'active' : ''}}">All</a></li>
                     <?php foreach ($category as $cat) {
                      ?>
-                    <li><a href="#" class="">{{$cat->name}}</a></li>
+                    <li><a href="{{ asset('table/'.$id.'/filter/'.$cat->id)}}"
+                            class="{{request()->is('table/'.$id.'/filter/'.$cat->id) ? 'active' : ''}}">{{$cat->name}}</a>
+                    </li>
                     <?php } ?>
                 </ul>
             </div>
@@ -37,7 +46,7 @@
                                     class="add-to-cart d-flex justify-content-center align-items-center text-center">
                                     <span><i class="ion-ios-menu"></i></span>
                                 </a>
-                            <a href="{{$id}}/buy/{{$f->id}}"
+                                <a href="{{asset('table/'.$id.'/buy/'.$f->id)}} "
                                     class="buy-now d-flex justify-content-center align-items-center mx-1">
                                     <span><i class="ion-ios-cart"></i></span>
                                 </a>
@@ -52,26 +61,28 @@
             <?php
         } ?>
         </div>
-        <div class="row mt-5">
-            <div class="col text-center">
-                <div class="block-27">
-                    <ul>
-                        <li><a href="#">&lt;</a></li>
-                        <li class="active"><span>1</span></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&gt;</a></li>
-                    </ul>
+        <div class="col-12">
+            <div class="text-center">
+                <div align="center">
+                    {{$food->links()}}
                 </div>
+
             </div>
         </div>
+        <?php if ($status == 1) {
+        ?>
+        <a href="updateOrder/{{$id}}">
+            <button class="btn btn-primary">Update</button>
+        </a>
+        <a href="{{asset('/orderlist/'.$id)}}"> <button type="button" class="btn btn-primary">Order List</button></a>
+        <?php
+    } else{ ?>
         <form method="POST">
             {{ csrf_field() }}
-            <button type="submit">Order</button>
+            <button type="submit" class="btn btn-primary">Order</button>
         </form>
-        <a href="../orderlist/{{$id}}"> <button type="button" class="btn btn-primary" >Order List</button></a>
+        <?php } ?>
+
     </div>
 </section>
 

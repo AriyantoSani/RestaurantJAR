@@ -6,8 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>AdminLTE 3 | Dashboard 3</title>
+    <title>RestaurantJAR</title>
     @yield('css')
+    <link rel="icon" type="image/png" href="./images/logo.jpg"/>
+    {{-- Datatables --}}
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/bs4/dt-1.10.20/b-1.6.1/b-print-1.6.1/r-2.2.3/datatables.min.css" />
+
+
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{asset('vendors/userpage/plugins/fontawesome-free/css/all.min.css')}}">
     <!-- IonIcons -->
@@ -151,7 +157,7 @@ to get the desired effect
     </ul> --}}
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="logout" class="nav-link">Log Out</a>
+                    <a href="{{ asset('logout') }}" class="nav-link">Log Out</a>
                 </li>
             </ul>
         </nav>
@@ -199,32 +205,35 @@ to get the desired effect
             </div>
             <!-- /.sidebar -->
         </aside>
-@yield('content')
-       <!-- Main Footer -->
-       <footer class="main-footer">
-        <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
-        All rights reserved.
-        <div class="float-right d-none d-sm-inline-block">
-            <b>Version</b> 3.0.2-pre
-        </div>
-    </footer>
-</div>
-<!-- ./wrapper -->
+        @yield('content')
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
+            All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 3.0.2-pre
+            </div>
+        </footer>
+    </div>
+    <!-- ./wrapper -->
 
-<!-- REQUIRED SCRIPTS -->
+    <!-- REQUIRED SCRIPTS -->
 
-<!-- jQuery -->
-<script src="{{asset('vendors/userpage/plugins/jquery/jquery.min.js')}}"></script>
-<!-- Bootstrap -->
-<script src="{{asset('vendors/userpage/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<!-- AdminLTE -->
-<script src="{{asset('vendors/userpage/dist/js/adminlte.js')}}"></script>
+    <!-- jQuery -->
+    <script src="{{asset('vendors/userpage/plugins/jquery/jquery.min.js')}}"></script>
+    <!-- Bootstrap -->
+    <script src="{{asset('vendors/userpage/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <!-- AdminLTE -->
+    <script src="{{asset('vendors/userpage/dist/js/adminlte.js')}}"></script>
 
-<!-- OPTIONAL SCRIPTS -->
-<script src="{{asset('vendors/userpage/plugins/chart.js/Chart.min.js')}}"></script>
-<script src="{{asset('vendors/userpage/dist/js/demo.js')}}"></script>
-<script src="{{asset('vendors/userpage/dist/js/pages/dashboard3.js')}}"></script>
-@yield('js')
+    <!-- OPTIONAL SCRIPTS -->
+    <script src="{{asset('vendors/userpage/plugins/chart.js/Chart.min.js')}}"></script>
+    <script src="{{asset('vendors/userpage/dist/js/demo.js')}}"></script>
+    <script src="{{asset('vendors/userpage/dist/js/pages/dashboard3.js')}}"></script>
+
+    <script type="text/javascript"
+        src="https://cdn.datatables.net/v/bs4/dt-1.10.20/b-1.6.1/b-print-1.6.1/r-2.2.3/datatables.min.js"></script>
+    @yield('js')
 </body>
 
 </html>

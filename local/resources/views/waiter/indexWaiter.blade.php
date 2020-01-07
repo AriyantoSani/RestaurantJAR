@@ -10,12 +10,6 @@
                 <div class="col-sm-6">
                     <h1 class="m-0 text-dark">Dashboard</h1>
                 </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard</li>
-                    </ol>
-                </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
@@ -29,18 +23,11 @@
 
                     <div class="card">
                         <div class="card-header border-0">
-                            <h3 class="card-title">Products</h3>
-                            <div class="card-tools">
-                                <a href="#" class="btn btn-tool btn-sm">
-                                    <i class="fas fa-download"></i>
-                                </a>
-                                <a href="#" class="btn btn-tool btn-sm">
-                                    <i class="fas fa-bars"></i>
-                                </a>
-                            </div>
+                            <h3 class="card-title">Pesanan</h3>
+
                         </div>
                         <div class="card-body table-responsive p-0">
-                            <table class="table table-striped table-valign-middle">
+                            <table id="Datatables" class="table table-striped table-valign-middle">
                                 <thead>
                                     <tr>
                                         <th>Table</th>
@@ -62,7 +49,8 @@
                                         </td>
 
                                         <td>
-                                        <button class="btn "><a href="detail/{{$o->order_id}}"> Detail</a></button>
+                                            <button class="btn "><a href="detail/{{$o->order_id}}"> Detail</a></button>
+                                            <button class="btn "><a href="split/{{$o->order_id}}"> Split</a></button>
                                         </td>
                                     </tr>
                                     <?php }?>
@@ -71,6 +59,44 @@
                         </div>
                     </div>
                     <!-- /.card -->
+                    <div class="card">
+                        <div class="card-header border-0">
+                            <h3 class="card-title">Sudah Bayar</h3>
+
+                        </div>
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-striped " id="Datatables2">
+                                <thead>
+                                    <tr>
+                                        <th>Table</th>
+                                        <th>Time</th>
+                                        <th>Price</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($orderb as $o2) {
+                                        ?>
+                                    <tr>
+                                        <td>
+                                            Table {{$o2->no_table}}
+                                        </td>
+                                        <td>{{$o2->total_price}}</td>
+                                        <td>
+                                            {{$o2->amount}}
+                                        </td>
+
+                                        <td>
+                                            <a href="printWaiter/{{$o2->id}}">
+                                                <button class="btn ">Detail</button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <?php }?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- /.row -->
@@ -87,4 +113,14 @@
 </aside>
 <!-- /.control-sidebar -->
 
+@endsection
+@section('js')
+<script>
+    $(document).ready( function () {
+    $('#Datatables').DataTable();
+} );
+$(document).ready( function () {
+    $('#Datatables2').DataTable();
+} );
+</script>
 @endsection
