@@ -11,6 +11,16 @@
 |
 */
 
+// Admin
+Route::get('/transaction','adminController@index');
+Route::get('/account','adminController@indexAccount');
+Route::post('/account/insert','adminController@insertAccount');
+Route::get('/account/{id}/delete','adminController@deleteAccount');
+Route::get('/menuMaster','adminController@indexMenuMaster');
+Route::post('/menuMaster/insert','adminController@insertMenuMaster');
+Route::get('/menuMaster/{id}/delete','adminController@deleteMenuMaster');
+
+
 
 Route::get('/','homepageController@index');
 Route::get('/home','homepageController@index');
