@@ -36,7 +36,7 @@
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 				<div class="brand">
-					<a href="#"><img src="{{ asset('./images/logo.jpg') }}" width="30px" height="30px" class="img-responsive logo"></a>
+					<a href="#"><img src="{{ asset('./images/logo.png') }}" width="30px" height="30px" class="img-responsive logo"></a>
 				</div>
 				<div class="container-fluid">
 					
