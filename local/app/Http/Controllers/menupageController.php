@@ -111,8 +111,11 @@ class menupageController extends Controller
     {
 
         Session::put('table', $id);
-        $category = DB::table('foodcategory')->get();
-        $food = DB::table('food')->where('status', 1)->paginate(12);
+        $cat = DB::table('foodcategory')->get();
+        $food = DB::table('food')
+            ->where('status', 1)
+            ->where('food_category_id', $category)
+            ->paginate(12);
 
         $table = DB::table('table')
             ->where('id', $id)
@@ -127,6 +130,6 @@ class menupageController extends Controller
             }
         }
         $status = $table->status;
-        return view('menu', ['id' => $id, 'category' => $category, 'food' => $food, 'status' => $status, 'cart' => $array]);
+        return view('menu', ['id' => $id, 'category' => $cat, 'food' => $food, 'status' => $status, 'cart' => $array]);
     }
 }
