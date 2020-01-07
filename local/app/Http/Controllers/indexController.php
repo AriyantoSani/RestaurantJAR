@@ -32,6 +32,7 @@ class indexController extends Controller
             ->where('order.status', 1)
             ->where('order.status', '!=', 2)
             ->select('order.id as order_id', 'order.*', 'table.*')
+            // ->orderby('order.order_date','DESC')
             ->get();
 
         $orderb = DB::table('bill')
@@ -40,6 +41,7 @@ class indexController extends Controller
             ->where('order.status', 0)
             ->where('order.status', '!=', 2)
             ->select('table.*', 'order.*', 'bill.*', 'order.id as id')
+            // ->orderby('date','desc')
             ->get();
 
         $payment = DB::table('paymentmethod')->get();
@@ -53,7 +55,7 @@ class indexController extends Controller
             ->join('table', 'table.id', 'order.table_Id')
             ->where('orderdetail.status', '!=', 1)
             ->select('order.id as order_id', 'order.*', 'table.*', 'orderDetail.*', 'food.name', 'food.price')
-
+        ->orderby('orderDetail.id','DESC')
             ->get();
         $food = DB::table('food')
             ->get();
