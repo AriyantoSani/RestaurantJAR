@@ -34,7 +34,7 @@
                                 <p>{{$d->description}}</p>
                                 </td>
 
-                                <td class="price">${{$d->price}}</td>
+                                <td class="price">{{$d->price}}</td>
 
                                 <td class="quantity">
 
@@ -56,7 +56,7 @@
                     <h3>Cart Totals</h3>
                     <p class="d-flex total-price">
                         <span>Total</span>
-                    <span>${{$total}}</span>
+                    <span>{{$total}}</span>
                     </p>
                 </div>
             {{-- <p><a href="checkout/{{$id}}/{{$order_id}}" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p> --}}
