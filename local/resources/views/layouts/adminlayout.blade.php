@@ -19,7 +19,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 	<!-- ICONS -->
 	<link rel="apple-touch-icon" sizes="76x76" href="{{asset('vendors/adminpage/admin/assets/img/apple-icon.png')}}">
-	<link rel="icon" type="image/png" sizes="96x96" href="{{asset('vendors/adminpage/admin/assets/img/favicon.png')}}">
+    <link rel="icon" type="image/png" href="{{ asset('./images/logo.jpg') }}"/>
 	<link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/v/bs4/dt-1.10.20/b-1.6.1/b-print-1.6.1/r-2.2.3/datatables.min.css" />
 
