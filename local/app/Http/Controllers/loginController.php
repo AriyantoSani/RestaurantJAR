@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use DB;
+use Illuminate\Http\Request;
 use Session;
 
 class loginController extends Controller
@@ -32,16 +32,15 @@ class loginController extends Controller
                 Session::put('email', $data->email);
                 Session::put('phone_number', $data->phone_number);
                 Session::put('role', $role->name);
-                Session::put('login', TRUE);
+                Session::put('login', true);
                 $jabatan = $role->name;
                 if ($jabatan == "Kitchen") {
                     return redirect('homeKitchen');
-                } else      if ($jabatan == "Admin") {
-                    return redirect('homeAdmin');
-                } else      if ($jabatan == "Waiter") {
+                } else if ($jabatan == "Admin") {
+                    return redirect('transaction');
+                } else if ($jabatan == "Waiter") {
                     return redirect('homeWaiter');
-                }
-                else      if ($jabatan == "Cashier") {
+                } else if ($jabatan == "Cashier") {
                     return redirect('homeCashier');
                 }
             } else {
