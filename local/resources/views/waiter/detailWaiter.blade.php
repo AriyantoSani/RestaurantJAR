@@ -64,7 +64,7 @@
 
                                         <td>
                                             <?php if($o->status == 0) { ?>
-                                            <button class="btn"><a href="antar/{{$o->id}}">Antar</a></button>
+                                            <button class="btn btn-default"><a href="antar/{{$o->id}}">Antar</a></button>
                                             <?php
                                             }
                                             else if($o->status == 1){

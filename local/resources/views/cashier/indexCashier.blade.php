@@ -48,7 +48,7 @@
                                     <td>
                                         <form method="POST">
                                             {{ csrf_field() }}
-                                            <button class="btn ">Checkout</button>
+                                            <button class="btn btn-default ">Checkout</button>
                                             <input type="hidden" name="order_id" value="{{$o->id}}">
                                             <select name="pembayaran">
                                                 <option value="">--Select--</option>
@@ -59,7 +59,7 @@
                                         </form>
 
                                         <a href="detailCashier/{{$o->id}}">
-                                            <button class="btn ">Detail</button>
+                                            <button class="btn btn-default ">Detail</button>
                                         </a>
                                     </td>
 
@@ -81,9 +81,9 @@
                             <table class="table table-striped " id="Datatables2">
                                 <thead>
                                     <tr>
-                                        <th>Table</th>
                                         <th>Time</th>
-                                        <th>Price</th>
+                                        <th>Table</th>
+                                        <th>Amount</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -92,16 +92,17 @@
                                             ?>
                                     <tr>
                                         <td>
-                                            Table {{$o2->no_table}}
+                                            {{ date("l, d-m-Y h:i:sa", strtotime($o2->date))                                        }}
+
                                         </td>
-                                        <td>{{$o2->total_price}}</td>
+                                        <td>{{$o2->no_table}}</td>
                                         <td>
                                             {{$o2->amount}}
                                         </td>
 
                                         <td>
                                             <a href="printCashier/{{$o2->id}}">
-                                                <button class="btn ">Detail</button>
+                                                <button class="btn  btn-warning">Print</button>
                                             </a>
                                         </td>
                                     </tr>

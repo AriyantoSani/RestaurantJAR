@@ -15,11 +15,12 @@ class indexController extends Controller
             ->where('order.status', '!=', 2)
             ->select('table.*', 'order.*')
             ->get();
-        $orderb = DB::table('order')
+        $orderb = DB::table('bill')
+            ->join('order', 'bill.order_id', 'order.id')
             ->join('table', 'table.id', 'order.table_Id')
             ->where('order.status', 0)
             ->where('order.status', '!=', 2)
-            ->select('table.*', 'order.*')
+            ->select('table.*', 'order.*', 'bill.*', 'order.id as id')
             ->get();
         $payment = DB::table('paymentmethod')->get();
         return view('cashier.indexCashier', ['order' => $order, 'orderb' => $orderb, 'payment' => $payment]);
@@ -33,11 +34,12 @@ class indexController extends Controller
             ->select('order.id as order_id', 'order.*', 'table.*')
             ->get();
 
-        $orderb = DB::table('order')
+        $orderb = DB::table('bill')
+            ->join('order', 'bill.order_id', 'order.id')
             ->join('table', 'table.id', 'order.table_Id')
             ->where('order.status', 0)
             ->where('order.status', '!=', 2)
-            ->select('table.*', 'order.*')
+            ->select('table.*', 'order.*', 'bill.*', 'order.id as id')
             ->get();
 
         $payment = DB::table('paymentmethod')->get();

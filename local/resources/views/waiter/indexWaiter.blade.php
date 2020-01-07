@@ -49,8 +49,8 @@
                                         </td>
 
                                         <td>
-                                            <button class="btn "><a href="detail/{{$o->order_id}}"> Detail</a></button>
-                                            <button class="btn "><a href="split/{{$o->order_id}}"> Split</a></button>
+                                            <button class="btn btn-default "><a href="detail/{{$o->order_id}}"> Detail</a></button>
+                                            <button class="btn btn-default "><a href="split/{{$o->order_id}}"> Split</a></button>
                                         </td>
                                     </tr>
                                     <?php }?>
@@ -68,27 +68,28 @@
                             <table class="table table-striped " id="Datatables2">
                                 <thead>
                                     <tr>
-                                        <th>Table</th>
                                         <th>Time</th>
-                                        <th>Price</th>
+                                        <th>Table</th>
+                                        <th>Amount</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($orderb as $o2) {
-                                        ?>
+                                            ?>
                                     <tr>
                                         <td>
-                                            Table {{$o2->no_table}}
+                                            {{ date("l, d-m-Y h:i:sa", strtotime($o2->date))                                        }}
+
                                         </td>
-                                        <td>{{$o2->total_price}}</td>
+                                        <td>{{$o2->no_table}}</td>
                                         <td>
                                             {{$o2->amount}}
                                         </td>
 
                                         <td>
-                                            <a href="printWaiter/{{$o2->id}}">
-                                                <button class="btn ">Detail</button>
+                                            <a href="printCashier/{{$o2->id}}">
+                                                <button class="btn btn-danger ">Print</button>
                                             </a>
                                         </td>
                                     </tr>
