@@ -37,15 +37,14 @@
             <div class="brand">
                 <a href="#"><img src="{{ asset('./images/logo.jpg') }}" width="30px" height="30px" alt="Klorofil Logo"
                         class="img-responsive logo"></a>
+
+                <p>Admin</p>
             </div>
             <div class="container-fluid">
                 <div class="navbar-btn">
-                    <button type="button" class="btn-toggle-fullwidth"><i
-                            class="lnr lnr-arrow-left-circle"></i></button>
                 </div>
-                <h1>Admin</h1>
                 <a href="{{asset('logout')}}">
-                    <h1 class="pull-right">Log Out</h1>
+                    <p class="pull-right">Log Out</p>
                 </a>
             </div>
         </nav>
