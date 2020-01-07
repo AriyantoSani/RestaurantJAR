@@ -9,19 +9,7 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
-
-// Admin
-Route::get('/transaction','adminController@index');
-Route::get('/transaction','adminController@index');
-Route::get('/account','adminController@indexAccount');
-Route::post('/account/insert','adminController@insertAccount');
-Route::get('/account/{id}/delete','adminController@deleteAccount');
-Route::get('/menuMaster','adminController@indexMenuMaster');
-Route::post('/menuMaster/insert','adminController@insertMenuMaster');
-Route::get('/menuMaster/{id}/delete','adminController@deleteMenuMaster');
-
-
+ */
 
 Route::get('/', 'homepageController@index');
 Route::get('/home', 'homepageController@index');
@@ -52,8 +40,7 @@ Route::group(
         Route::post('/homeCashier', 'foodController@checkoutOrder')->middleware('checkcashier');
         Route::get('/detailCashier/{id}', 'foodController@detailOrderCashier')->middleware('checkcashier');
         Route::get('/printCashier/{id}', 'foodController@printorderCashier')->middleware('checkcashier');
-        Route::get('/checkout/{order_id}','foodController@checkout')->middleware('checkcashier');
-
+        Route::get('/checkout/{order_id}', 'foodController@checkout')->middleware('checkcashier');
         //Waiter
         Route::get('/homeWaiter', 'indexController@indexWaiter')->middleware('checkwaiter');
         Route::get('/detail/{id}', 'foodController@detailOrder')->middleware('checkwaiter');
@@ -66,6 +53,13 @@ Route::group(
         Route::get('/homeKitchen', 'indexController@indexKitchen')->middleware('checkkitchen');
         Route::get('/changeStock/{id}', 'foodController@changeStock')->middleware('checkkitchen');
 
-        //Admin
-    }
+        // Admin
+        Route::get('/transaction', 'adminController@index')->middleware('checkadmin');
+        Route::get('/transaction', 'adminController@index')->middleware('checkadmin');
+        Route::get('/account', 'adminController@indexAccount')->middleware('checkadmin');
+        Route::post('/account/insert', 'adminController@insertAccount')->middleware('checkadmin');
+        Route::get('/account/{id}/delete', 'adminController@deleteAccount')->middleware('checkadmin');
+        Route::get('/menuMaster', 'adminController@indexMenuMaster')->middleware('checkadmin');
+        Route::post('/menuMaster/insert', 'adminController@insertMenuMaster')->middleware('checkadmin');
+        Route::get('/menuMaster/{id}/delete', 'adminController@deleteMenuMaster')->middleware('checkadmin');}
 );

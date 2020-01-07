@@ -119,6 +119,7 @@
     $(document).ready( function () {
     $('#Datatables').DataTable();
 } );
+
 $(document).ready( function () {
     $('#Datatables2').DataTable();
 } );

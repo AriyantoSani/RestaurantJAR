@@ -60,14 +60,26 @@ class foodController extends Controller
     }
     public function printorderCashier(Request $req, $id)
     {
+
+
         $orderDetail = DB::table('orderdetail')
             ->where('orderdetail.order_id', $id)
-            ->join('food', 'orderdetail.food_id', 'food.id')
             ->where('orderdetail.status', '!=', 2)
-            ->select('food.*', 'orderdetail.*')
+            ->join('food', 'orderdetail.food_id', 'food.id')
+            ->join('order', 'orderdetail.order_id', 'order.id')
+            ->join('table', 'order.table_id', 'table.id')
+            ->select('food.name as foodname','food.price as price','orderdetail.quantity',DB::raw('food.price*orderdetail.quantity as total'))
             ->get();
-        // return $orderDetail;
-        return view('cashier.printCashier', ['order' => $orderDetail]);
+        $bill = DB::table('bill')->join('user', 'bill.user_id', 'user.id')->join('paymentmethod','bill.paymentMethod_id','paymentmethod.id')->where('bill.order_id', $id)->first();
+        $order= DB::table('order')->where('order.id',$id)->first();
+        // $date = $bill->date;
+        $date = $bill->date;
+        $cs = $bill->first_name." ".$bill->last_name;
+        $paymentvia = $bill->name;
+        $total = $order->total_price;
+
+        return view('cashier.printCashier', ['order' => $orderDetail , 'date'=>$date,'cs'=>$cs,'paymentvia'=>$paymentvia,'total'=>$total]);
+
     }
     public function printorderWaiter(Request $req, $id)
     {
@@ -75,10 +87,19 @@ class foodController extends Controller
             ->where('orderdetail.order_id', $id)
             ->where('orderdetail.status', '!=', 2)
             ->join('food', 'orderdetail.food_id', 'food.id')
-            ->select('food.*', 'orderdetail.*')
+            ->join('order', 'orderdetail.order_id', 'order.id')
+            ->join('table', 'order.table_id', 'table.id')
+            ->select('food.name as foodname','food.price as price','orderdetail.quantity',DB::raw('food.price*orderdetail.quantity as total'))
             ->get();
-        // return $orderDetail;
-        return view('waiter.printWaiter', ['order' => $orderDetail]);
+        $bill = DB::table('bill')->join('user', 'bill.user_id', 'user.id')->join('paymentmethod','bill.paymentMethod_id','paymentmethod.id')->where('bill.order_id', $id)->first();
+        $order= DB::table('order')->where('order.id',$id)->first();
+        // $date = $bill->date;
+        $date = $bill->date;
+        $cs = $bill->first_name." ".$bill->last_name;
+        $paymentvia = $bill->name;
+        $total = $order->total_price;
+
+        return view('waiter.printWaiter', ['order' => $orderDetail , 'date'=>$date,'cs'=>$cs,'paymentvia'=>$paymentvia,'total'=>$total]);
     }
 
     public function checkoutOrder(Request $req)
