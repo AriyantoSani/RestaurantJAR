@@ -20,6 +20,9 @@
 	<!-- ICONS -->
 	<link rel="apple-touch-icon" sizes="76x76" href="{{asset('vendors/adminpage/admin/assets/img/apple-icon.png')}}">
 	<link rel="icon" type="image/png" sizes="96x96" href="{{asset('vendors/adminpage/admin/assets/img/favicon.png')}}">
+	<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/v/bs4/dt-1.10.20/b-1.6.1/b-print-1.6.1/r-2.2.3/datatables.min.css" />
+
 	@yield('header')
 	<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
 </head>
@@ -67,6 +70,8 @@
 	{{-- <script src="{{asset('vendors/adminpage/admin/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
 	<script src="{{asset('vendors/adminpage/admin/assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js')}}"></script> --}}
 	<script src="{{asset('vendors/adminpage/admin/assets/vendor/chartist/js/chartist.min.js')}}"></script>
+	<script type="text/javascript"
+	src="https://cdn.datatables.net/v/bs4/dt-1.10.20/b-1.6.1/b-print-1.6.1/r-2.2.3/datatables.min.js"></script>
 	@yield('js')
 </body>
 

@@ -13,6 +13,7 @@ class adminController extends Controller
     {
         $dataOrder = DB::table('table')
                     ->join('order', 'order.table_id', '=', 'table.id' )
+                    // ->where('order.order_date','=', $request->post('waktu',''))
                     ->get();
         // $datagraph= DB::select('
         // select count(*) from order WHERE order_date >= '.$request->post('tglawal','0-0-0').' AND order_date <= '.$request->post('tglakhir','0-0-0').'GROUP BY  DATEPART(DAY, Timestamp) ');
