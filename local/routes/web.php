@@ -27,8 +27,8 @@ Route::get('/login', 'loginController@index');
 Route::post('/login', 'loginController@login');
 Route::post('/table/{id}', 'menupageController@createOrder');
 Route::get('orderlist/checkout/{id}/{orderid}', 'menupageController@checkoutOrder');
-
 Route::get('/table/{id}/filter/{category}', 'menupageController@filterindex');
+Route::post('/table/{id}/filter/{category}', 'menupageController@createOrder');
 
 Route::get('/logout', 'loginController@logout');
 

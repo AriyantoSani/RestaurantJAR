@@ -8,7 +8,7 @@
 
     <title>RestaurantJAR</title>
     @yield('css')
-    <link rel="icon" type="image/png" href="./images/logo.jpg"/>
+    <link rel="icon" type="image/png" href="{{ asset('./images/logo.jpg') }}"/>
     {{-- Datatables --}}
     <link rel="stylesheet" type="text/css"
         href="https://cdn.datatables.net/v/bs4/dt-1.10.20/b-1.6.1/b-print-1.6.1/r-2.2.3/datatables.min.css" />

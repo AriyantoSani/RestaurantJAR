@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use DB;
+use Illuminate\Http\Request;
 use Session;
 
 class foodController extends Controller
@@ -25,6 +25,7 @@ class foodController extends Controller
     {
         $orderDetail = DB::table('orderdetail')
             ->where('orderdetail.order_id', $id)
+            ->where('orderdetail.status', '!=', 2)
             ->join('food', 'orderdetail.food_id', 'food.id')
             ->select('food.*', 'orderdetail.*')
             ->get();
@@ -62,6 +63,7 @@ class foodController extends Controller
         $orderDetail = DB::table('orderdetail')
             ->where('orderdetail.order_id', $id)
             ->join('food', 'orderdetail.food_id', 'food.id')
+            ->where('orderdetail.status', '!=', 2)
             ->select('food.*', 'orderdetail.*')
             ->get();
         // return $orderDetail;
@@ -71,6 +73,7 @@ class foodController extends Controller
     {
         $orderDetail = DB::table('orderdetail')
             ->where('orderdetail.order_id', $id)
+            ->where('orderdetail.status', '!=', 2)
             ->join('food', 'orderdetail.food_id', 'food.id')
             ->select('food.*', 'orderdetail.*')
             ->get();
@@ -102,13 +105,14 @@ class foodController extends Controller
             ->join('food', 'orderdetail.food_id', 'food.id')
             ->select('food.*', 'orderdetail.*', 'food.id AS foodid')
             ->get();
+        $payment = DB::table('paymentmethod')->get();
         // return $orderDetail;
-        return view('waiter.splitWaiter', ['order' => $orderDetail, 'id' => $id]);
+        return view('waiter.splitWaiter', ['order' => $orderDetail, 'id' => $id, 'payment' => $payment]);
     }
     public function splitOrderAction(Request $req, $id)
     {
         $split = $req->split;
-
+        $payment = $req->payment;
         $order = DB::table('order')->where('order.id', $id)->leftjoin('orderdetail', 'order.id', 'orderdetail.order_id')->first();
         $total = 0;
         $totalq = 0;
@@ -134,7 +138,7 @@ class foodController extends Controller
             ->where('id', $orderid)
             ->first();
         $a = $order->amount;
-        DB::table('bill')->insert(['amount' => $a, 'order_id' => $orderid, 'user_id' => $user, 'paymentMethod_id' => 1]);
+        DB::table('bill')->insert(['amount' => $a, 'order_id' => $orderid, 'user_id' => $user, 'paymentMethod_id' => $payment]);
         // DB::table('order')->where('id', $id)->update(['status' => 2]);
         return redirect()->back();
     }

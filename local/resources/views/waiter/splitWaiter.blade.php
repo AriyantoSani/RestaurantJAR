@@ -64,7 +64,13 @@
                                         <?php }?>
                                     </tbody>
                                 </table>
-                                <button type="submit">Split Bill</button></form>
+                                <select name="payment">
+                                    <option value="">--Select--</option>
+                                    <?php foreach($payment as $p){ ?>
+                                    <option value="{{ $p->id }}">{{ $p->name }}</option>
+                                    <?php } ?>
+                                </select>
+                                <button type="submit" class="btn btn-primary ">Split Bill</button></form>
                         </div>
                     </div>
                     <!-- /.card -->
