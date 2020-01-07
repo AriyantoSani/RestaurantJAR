@@ -33,7 +33,8 @@
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
-				{{-- <a href="index.html"><img src="{{asset('vendors/adminpage/admin/assets/img/logo-dark.png')}}" alt="Klorofil Logo" class="img-responsive logo"></a> --}}
+				{{-- <a href=""><img src="{{ asset('./images/logo.jpg') }}" alt="Jar" class="img-responsive logo"></a> --}}
+				{{-- <link rel="icon" type="image/png" href="{{ asset('./images/logo.jpg') }}"/> --}}
 			</div>
 			<div class="container-fluid">
 				<div class="navbar-btn">
