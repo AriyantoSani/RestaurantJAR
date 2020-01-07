@@ -13,7 +13,7 @@ class menupageController extends Controller
     {
         Session::put('table', $id);
         $category = DB::table('foodcategory')->get();
-        $food = DB::table('food')->where('status',1)->paginate(1);
+        $food = DB::table('food')->where('status',1)->paginate(12);
 
         $table = DB::table('table')
         ->where('id',$id)
@@ -63,6 +63,7 @@ class menupageController extends Controller
         $detail = DB::table('orderdetail')
         ->where('order_id',$order->id)
         ->join('food','orderdetail.food_id','food.id')
+        ->where('orderdetail.status','!=',2)
         ->get();
 
         return view('orderlist', ['id' => $id ,'order'=>$detail,'order_id'=>$order->id]);
@@ -102,7 +103,7 @@ class menupageController extends Controller
         $food = DB::table('food')
         ->where('status',1)
         ->where('food_category_id',$category)
-        ->get();
+        ->paginate(12);
 
         $table = DB::table('table')
         ->where('id',$id)

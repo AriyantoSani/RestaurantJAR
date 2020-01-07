@@ -16,6 +16,7 @@ Route::get('/', 'homepageController@index');
 Route::get('/home', 'homepageController@index');
 Route::get('/menu', 'menupageController@index');
 Route::get('/about', 'homepageController@indexAbout');
+Route::get('/menu', 'homepageController@indexMenu');
 Route::get('/gallery', 'homepageController@indexGallery');
 Route::get('/table/{id}', 'menupageController@index');
 Route::get('table/updateOrder/{id}', 'menupageController@updateOrder');
@@ -46,6 +47,7 @@ Route::group(
         Route::get('/homeWaiter', 'indexController@indexWaiter')->middleware('checkwaiter');
         Route::get('/detail/{id}', 'foodController@detailOrder')->middleware('checkwaiter');
         Route::get('/detail/antar/{id}', 'foodController@antarOrder')->middleware('checkwaiter');
+        Route::get('/printWaiter/{id}', 'foodController@printorderWaiter')->middleware('checkwaiter');
         Route::get('/split/{id}', 'foodController@splitOrder')->middleware('checkwaiter');
         Route::post('/split/{id}', 'foodController@splitOrderAction')->middleware('checkwaiter');
 

@@ -67,6 +67,17 @@ class foodController extends Controller
         // return $orderDetail;
         return view('cashier.printCashier', ['order' => $orderDetail]);
     }
+    public function printorderWaiter(Request $req, $id)
+    {
+        $orderDetail = DB::table('orderdetail')
+            ->where('orderdetail.order_id', $id)
+            ->join('food', 'orderdetail.food_id', 'food.id')
+            ->select('food.*', 'orderdetail.*')
+            ->get();
+        // return $orderDetail;
+        return view('waiter.printWaiter', ['order' => $orderDetail]);
+    }
+
     public function checkoutOrder(Request $req)
     {
         $user = session::get('id');

@@ -10,12 +10,6 @@
                 <div class="col-sm-6">
                     <h1 class="m-0 text-dark">Dashboard</h1>
                 </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard</li>
-                    </ol>
-                </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
@@ -29,18 +23,10 @@
 
                     <div class="card">
                         <div class="card-header border-0">
-                            <h3 class="card-title">Products</h3>
-                            <div class="card-tools">
-                                <a href="#" class="btn btn-tool btn-sm">
-                                    <i class="fas fa-download"></i>
-                                </a>
-                                <a href="#" class="btn btn-tool btn-sm">
-                                    <i class="fas fa-bars"></i>
-                                </a>
-                            </div>
+                            <h3 class="card-title">Detail</h3>
                         </div>
                         <div class="card-body table-responsive p-0">
-                            <table class="table table-striped table-valign-middle">
+                            <table class="table table-striped table-valign-middle" id="Datatables">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
@@ -89,4 +75,12 @@
 </aside>
 <!-- /.control-sidebar -->
 
+@endsection
+@section('js')
+<script>
+    $(document).ready( function () {
+    $('#Datatables').DataTable();
+} );
+
+</script>
 @endsection

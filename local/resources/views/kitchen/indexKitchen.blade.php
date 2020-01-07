@@ -30,7 +30,7 @@
                                             <div class="card">
 
                                                 <div class="card-body table-responsive p-0">
-                                                    <table class="table table-striped table-valign-middle">
+                                                    <table id="Datatables" class="table table-striped table-valign-middle">
                                                         <thead>
                                                             <tr>
                                                                 <th>Table</th>
@@ -139,3 +139,11 @@
 <!-- /.control-sidebar -->
 
 @endsection
+@section('js')
+<script>
+    $(document).ready( function () {
+    $('#Datatables').DataTable();
+} );
+</script>
+@endsection
+

@@ -1,5 +1,11 @@
 @extends('layouts.menulayout')
-
+@section('css')
+<style>
+    .navbar {
+        background: #ADD8E6;
+    }
+</style>
+@endsection
 @section('content')
 
 <section class="ftco-section">
@@ -55,11 +61,12 @@
             <?php
         } ?>
         </div>
-        <div class="row mt-5">
-            <div class="col text-center">
-                <div class="block-27">
+        <div class="col-12">
+            <div class="text-center">
+                <div align="center">
                     {{$food->links()}}
                 </div>
+
             </div>
         </div>
         <?php if ($status == 1) {
