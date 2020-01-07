@@ -5,7 +5,7 @@
 <section class="home-banner-area relative">
     <div class="container">
         <div class="row height align-items-center justify-content-center">
-            <div class="home-banner-content col-lg-5">
+            <div class="home-banner-content col-lg-12">
                 <h1 align="center">RestaurantJAR</h1>
                 <hr>
                 <p>A Fine Dinning Restaurant</p>
