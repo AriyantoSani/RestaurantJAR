@@ -119,17 +119,14 @@ class menupageController extends Controller
             ->first();
 
         $s = Session::get('item');
+        $array = array();
         if ($s != null) {
-            $array = array();
             foreach ($s as $i) {
                 $foods = DB::table('food')->where('id', $i)->first();
                 array_push($array, $foods->name);
             }
         }
         $status = $table->status;
-        if ($array == null) {
-            return view('menu', ['id' => $id, 'category' => $category, 'food' => $food, 'status' => $status]);
-        }
         return view('menu', ['id' => $id, 'category' => $category, 'food' => $food, 'status' => $status, 'cart' => $array]);
     }
 }
