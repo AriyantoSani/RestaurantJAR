@@ -31,7 +31,7 @@
 
                                 <td class="product-name">
                                 <h3>{{$d->name}}</h3>
-                                    <p>Far far away, behind the word mountains, far from the countries</p>
+                                <p>{{$d->description}}</p>
                                 </td>
 
                                 <td class="price">${{$d->price}}</td>

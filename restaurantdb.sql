@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2020 at 10:46 PM
+-- Generation Time: Jan 06, 2020 at 11:49 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `restaurantdb`
 --
-CREATE DATABASE IF NOT EXISTS `restaurantdb` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `restaurantdb`;
 
 -- --------------------------------------------------------
 
@@ -32,12 +30,20 @@ USE `restaurantdb`;
 
 CREATE TABLE `bill` (
   `id` int(11) NOT NULL,
-  `date` datetime NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `amount` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `paymentMethod_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `bill`
+--
+
+INSERT INTO `bill` (`id`, `date`, `amount`, `order_id`, `user_id`, `paymentMethod_id`) VALUES
+(1, '2020-01-06 22:37:07', 3, 2, 2, 1),
+(2, '2020-01-06 22:39:02', 3, 1, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -51,18 +57,21 @@ CREATE TABLE `food` (
   `price` varchar(45) NOT NULL,
   `status` tinyint(4) NOT NULL,
   `food_category_id` int(11) NOT NULL,
-  `link` varchar(255) NOT NULL
+  `link` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `food`
 --
 
-INSERT INTO `food` (`id`, `name`, `price`, `status`, `food_category_id`, `link`) VALUES
-(1, 'ganja', '15', 1, 2, 'https://asset.kompas.com/crops/nK5zyyFrJybdFUzWBqKKyY5D8Z0=/0x14:900x614/750x500/data/photo/2018/01/11/2038683000.jpg'),
-(2, 'baygon', '25', 1, 5, 'https://cf.shopee.co.id/file/7ed4e40b779e492313c3626759e8564b'),
-(3, 'obat obatan', '75', 1, 3, 'https://awsimages.detik.net.id/visual/2015/01/20/c6ff8067-94d5-494d-9aa4-f063846e526d_169.jpg?w=650'),
-(4, 'racun tikus', '30', 1, 1, 'https://s1.bukalapak.com/img/1587550021/w-1000/DORA_RACUN_TIKUS_AMPUH_MATI_DITEMPAT_TERANG.jpg');
+INSERT INTO `food` (`id`, `name`, `price`, `status`, `food_category_id`, `link`, `description`) VALUES
+(1, 'ganja', '15', 1, 2, 'https://asset.kompas.com/crops/nK5zyyFrJybdFUzWBqKKyY5D8Z0=/0x14:900x614/750x500/data/photo/2018/01/11/2038683000.jpg', ''),
+(2, 'baygon', '25', 0, 5, 'https://cf.shopee.co.id/file/7ed4e40b779e492313c3626759e8564b', 'buat diminum'),
+(3, 'obat obatan', '75', 1, 3, 'https://awsimages.detik.net.id/visual/2015/01/20/c6ff8067-94d5-494d-9aa4-f063846e526d_169.jpg?w=650', ''),
+(4, 'racun tikus', '30', 0, 1, 'https://s1.bukalapak.com/img/1587550021/w-1000/DORA_RACUN_TIKUS_AMPUH_MATI_DITEMPAT_TERANG.jpg', ''),
+(5, 'ayam', '25', 1, 1, 'https://blog.tiket.com/wp-content/uploads/Makanan-Khas-Sunda.jpg', ''),
+(6, 'babi', '100', 1, 4, 'https://asset.kompas.com/crops/7tSV5zF5wagnxQAaF_v55Kio6rA=/0x0:998x665/750x500/data/photo/2019/12/06/5dea387e25f38.jpg', 'pangang babi');
 
 -- --------------------------------------------------------
 
@@ -106,17 +115,8 @@ CREATE TABLE `order` (
 --
 
 INSERT INTO `order` (`id`, `order_date`, `total_price`, `status`, `amount`, `table_id`) VALUES
-(1, '2020-01-05 20:41:06', 25, 1, 25, 1),
-(2, '2020-01-05 20:48:57', 15, 1, 15, 1),
-(3, '2020-01-05 20:49:03', 25, 1, 25, 1),
-(4, '2020-01-05 20:49:45', 75, 1, 75, 1),
-(5, '2020-01-05 20:50:33', 15, 1, 15, 1),
-(6, '2020-01-05 20:51:23', 25, 1, 25, 1),
-(7, '2020-01-05 20:51:25', 25, 1, 25, 1),
-(8, '2020-01-05 20:51:28', 25, 1, 25, 1),
-(9, '2020-01-05 20:54:43', 15, 1, 15, 1),
-(10, '2020-01-05 20:57:53', 25, 1, 25, 1),
-(11, '2020-01-05 21:14:29', 75, 1, 75, 1);
+(1, '2020-01-06 22:39:03', 175, 0, 3, 5),
+(2, '2020-01-06 22:37:07', 165, 0, 3, 5);
 
 -- --------------------------------------------------------
 
@@ -128,20 +128,21 @@ CREATE TABLE `orderdetail` (
   `id` int(11) NOT NULL,
   `food_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL
+  `quantity` int(11) NOT NULL,
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `orderdetail`
 --
 
-INSERT INTO `orderdetail` (`id`, `food_id`, `order_id`, `quantity`) VALUES
-(1, 2, 6, 1),
-(2, 2, 7, 1),
-(3, 2, 8, 1),
-(4, 1, 9, 1),
-(5, 2, 10, 1),
-(6, 3, 11, 1);
+INSERT INTO `orderdetail` (`id`, `food_id`, `order_id`, `quantity`, `status`) VALUES
+(1, 3, 1, 2, 0),
+(2, 3, 1, 2, 2),
+(3, 1, 1, 1, 2),
+(4, 5, 1, 1, 0),
+(5, 3, 2, 2, 0),
+(6, 1, 2, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -166,6 +167,15 @@ CREATE TABLE `paymentmethod` (
   `name` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `paymentmethod`
+--
+
+INSERT INTO `paymentmethod` (`id`, `name`) VALUES
+(1, 'Cash'),
+(2, 'Credit'),
+(3, 'ATM');
+
 -- --------------------------------------------------------
 
 --
@@ -183,8 +193,10 @@ CREATE TABLE `role` (
 
 INSERT INTO `role` (`id`, `name`) VALUES
 (1, 'guest'),
-(2, 'admin'),
-(3, 'cashier');
+(2, 'Admin'),
+(3, 'Cashier'),
+(4, 'Waiter'),
+(5, 'Kitchen');
 
 -- --------------------------------------------------------
 
@@ -203,7 +215,11 @@ CREATE TABLE `table` (
 --
 
 INSERT INTO `table` (`id`, `no_table`, `status`) VALUES
-(1, '01', 1);
+(1, '01', 0),
+(2, '02', 0),
+(3, '03', 0),
+(4, '04', 0),
+(5, '05', 0);
 
 -- --------------------------------------------------------
 
@@ -227,7 +243,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `phone_number`, `role_id`) VALUES
-(2, '1772046', 'ea7966f90de2bf520e3f0042053e6ec3', 'Ariyanto', 'Sani', 'ariyantosani555@gmail.com', '082316997753', 2);
+(2, '1772046', 'ea7966f90de2bf520e3f0042053e6ec3', 'Ariyanto', 'Sani', 'ariyantosani555@gmail.com', '082316997753', 3);
 
 --
 -- Indexes for dumped tables
@@ -310,13 +326,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `bill`
 --
 ALTER TABLE `bill`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `food`
 --
 ALTER TABLE `food`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `foodcategory`
@@ -328,7 +344,7 @@ ALTER TABLE `foodcategory`
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `orderdetail`
@@ -346,19 +362,19 @@ ALTER TABLE `orderdetailtrack`
 -- AUTO_INCREMENT for table `paymentmethod`
 --
 ALTER TABLE `paymentmethod`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `table`
 --
 ALTER TABLE `table`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user`
