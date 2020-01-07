@@ -19,7 +19,7 @@
                                 <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal"
                                     data-target="#exampleModal">Add</button>
                             </div>
-                            <table class="table table-hover">
+                            <table class="table table-hover" id="Datatables">
                                 <thead>
                                     <tr>
                                         <th>First Name</th>
@@ -158,6 +158,11 @@
     $(document).ready(function() {
         $('.erole').editable();
     });
+</script>
+<script>
+   $(document).ready( function () {
+    $('#Datatables').DataTable();
+} );
 </script>
 @endsection
 

@@ -13,6 +13,7 @@
 
 // Admin
 Route::get('/transaction','adminController@index');
+Route::get('/transaction','adminController@index');
 Route::get('/account','adminController@indexAccount');
 Route::post('/account/insert','adminController@insertAccount');
 Route::get('/account/{id}/delete','adminController@deleteAccount');

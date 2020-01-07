@@ -20,7 +20,7 @@
                                 <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal"
                                     data-target="#exampleModal2">Add</button>
                             </div>
-                            <table class="table table-hover" width="100%">
+                            <table class="table table-hover" width="100%" id="Datatables">
                                 <thead>
                                     <tr>
                                         <th>Menu Name</th>
@@ -157,4 +157,9 @@
         $('.edesc').editable();
     });
 </script>
+      <script>
+            $(document).ready( function () {
+       $('#Datatables').DataTable();
+   } );
+         </script>
 @endsection
