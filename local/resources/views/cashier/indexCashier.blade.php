@@ -102,7 +102,7 @@
 
                                         <td>
                                             <a href="printCashier/{{$o2->id}}">
-                                                <button class="btn  btn-warning">Print</button>
+                                                <button class="btn  btn-danger">Print</button>
                                             </a>
                                         </td>
                                     </tr>

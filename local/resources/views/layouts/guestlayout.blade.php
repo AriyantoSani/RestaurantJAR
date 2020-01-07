@@ -43,7 +43,6 @@
                 <div class="header-top d-flex justify-content-between align-items-center navbar-expand-md">
                     <div class="col menu-left">
                         <a class="{{ request()->is('home') ? 'active' : '' }}" href="{{ asset('home') }}">Home</a>
-                        <a class="{{ request()->is('menu') ? 'active' : '' }}" href="{{ asset('menu') }}">menu</a>
                         <a class="{{ request()->is('about') ? 'active' : '' }}" href="{{ asset('about') }}">about</a>
                     </div>
                     <div class="col-3 logo">

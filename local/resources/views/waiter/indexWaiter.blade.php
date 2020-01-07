@@ -88,7 +88,7 @@
                                         </td>
 
                                         <td>
-                                            <a href="printCashier/{{$o2->id}}">
+                                            <a href="printWaiter/{{$o2->id}}">
                                                 <button class="btn btn-danger ">Print</button>
                                             </a>
                                         </td>
