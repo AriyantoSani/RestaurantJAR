@@ -58,7 +58,7 @@
                                             " data-title="Masukan Nilai">{{ $dt->phone_number }}</a></th>
                                     <th><a href="#" class="erole" data-type="text" data-pk="{{$dt->id}}" value="{{ $dt->role_id }}"  data-url=" {{url('api/account/'.$dt->id.'/editrole')}}" data-title="Masukan Nilai">{{ $dt->name }}</a></th>
                                         <th>
-                                            <a href="{{url('account/'.$dt->id.'/delete')}}" class="btn btn-danger btn-sm">Delete</a>
+                                            <a href="#" data-href="{{url('account/'.$dt->id.'/delete')}}" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirm-delete">Delete</a>
                                         </th>
                                     </tr>
                                     <?php  endforeach ?>
@@ -131,7 +131,22 @@
         </div>
     </div>
 </div>
-
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Confirmation
+                </div>
+                <div class="modal-body">
+                    Are you sure want to delete this account?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-danger btn-ok">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
 
 @section('js')
@@ -158,6 +173,9 @@
     $(document).ready(function() {
         $('.erole').editable();
     });
+    $('#confirm-delete').on('show.bs.modal', function(e) {
+    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+});
 </script>
 <script>
    $(document).ready( function () {
