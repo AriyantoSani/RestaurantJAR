@@ -53,6 +53,7 @@ Route::group(
         Route::get('/printCashier/{id}', 'foodController@printorderCashier')->middleware('checkcashier');
         Route::get('/checkout/{order_id}','foodController@checkout')->middleware('checkcashier');
 
+        Route::get('/home', 'indexController@indexCashier')->middleware('checkcashier');
         //Waiter
         Route::get('/homeWaiter', 'indexController@indexWaiter')->middleware('checkwaiter');
         Route::get('/detail/{id}', 'foodController@detailOrder')->middleware('checkwaiter');

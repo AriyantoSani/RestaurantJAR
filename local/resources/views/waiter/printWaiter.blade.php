@@ -28,35 +28,34 @@
                             <table class="table table-striped table-valign-middle" id="Datatables">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
+                                        <th>Food Name</th>
                                         <th>Price</th>
                                         <th>Quantity</th>
-                                        <th>Status</th>
-                                        <th>A</th>
+                                        <th>Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+
                                     <?php foreach ($order as $o) {
-                                            ?>
+                                        ?>
                                     <tr>
                                         <td>
-                                            {{$o->name}}
+                                            {{$o->foodname}}
                                         </td>
                                         <td>{{$o->price}}</td>
                                         <td>{{$o->quantity}}</td>
-                                        <td>
-                                            <?php if($o->status == 0) {
-                                                echo "Belum Diantar";
-                                            }
-                                            else if($o->status == 1){
-                                                echo "Sudah Diantar";
-                                            }?>
-                                        </td>
-                                        <td>
-                                            {{-- <button onclick="myFunction()">Print this page</button> --}}
-                                        </td>
+                                        <td>{{ $o->total }}</td>
                                     </tr>
                                     <?php }?>
+
+
+                                    <tr>
+                                        <td><b>Date : </b> {{ $date }} </td>
+                                        <td><b>User : </b> {{ $cs }} </td>
+                                        <td><b>Payment Via : </b> {{ $paymentvia }} </td>
+                                        <td>{{ $total }}</td>
+                                    </tr>
+
                                 </tbody>
                             </table>
                         </div>

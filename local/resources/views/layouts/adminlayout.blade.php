@@ -21,7 +21,7 @@
 	<link rel="apple-touch-icon" sizes="76x76" href="{{asset('vendors/adminpage/admin/assets/img/apple-icon.png')}}">
 	<link rel="icon" type="image/png" sizes="96x96" href="{{asset('vendors/adminpage/admin/assets/img/favicon.png')}}">
 	@yield('header')
-	<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>    
+	<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -57,10 +57,7 @@
 		<!-- END MAIN -->
 		<div class="clearfix"></div>
 		<footer>
-			{{-- <div class="container-fluid">
-				<p class="copyright">Shared by <i class="fa fa-love"></i><a href="https://bootstrapthemes.co">BootstrapThemes</a>
-</p>
-			</div> --}}
+            <strong>Copyright &copy; Ariyanto Sani , Roy Parsaoran , Jonathan Bernad</strong>
 		</footer>
 	</div>
 	<!-- END WRAPPER -->

@@ -180,7 +180,7 @@ to get the desired effect
                         {{-- <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> --}}
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">{{Session::get('first_name')}} {{Session::get('last_name')}}</a>
+                        <a href="{{ asset('home'.Session::get('role')) }}" class="d-block">{{Session::get('first_name')}} {{Session::get('last_name')}}</a>
                     </div>
                 </div>
 
@@ -191,7 +191,7 @@ to get the desired effect
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item has-treeview menu-open">
-                            <a href="#" class="nav-link active">
+                            <a href="{{ asset('home'.Session::get('role')) }}" class="nav-link active">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -208,11 +208,7 @@ to get the desired effect
         @yield('content')
         <!-- Main Footer -->
         <footer class="main-footer">
-            <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
-            All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 3.0.2-pre
-            </div>
+            <strong>Copyright &copy; Ariyanto Sani , Roy Parsaoran , Jonathan Bernad</strong>
         </footer>
     </div>
     <!-- ./wrapper -->
