@@ -58,8 +58,8 @@
                                             " data-title="Masukan Nilai">{{ $dt->food_category_id }}</a></th>
                                         <th>
 
-                                            <a href="{{url('menuMaster/'.$dt->id.'/delete')}}"
-                                                class="btn btn-danger btn-sm">Delete</a>
+                                            <a href="#" data-href="{{url('menuMaster/'.$dt->id.'/delete')}}"
+                                                class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirm-delete">Delete</a>
                                         </th>
                                     </tr>
                                     <?php  endforeach ?>
@@ -130,7 +130,22 @@
         </div>
     </div>
 </div>
-
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Confirmation
+                </div>
+                <div class="modal-body">
+                    Are you sure want to delete this Menu?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-danger btn-ok">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @stop
 
@@ -156,6 +171,9 @@
     $(document).ready(function() {
         $('.edesc').editable();
     });
+    $('#confirm-delete').on('show.bs.modal', function(e) {
+    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+});
 </script>
       <script>
             $(document).ready( function () {
