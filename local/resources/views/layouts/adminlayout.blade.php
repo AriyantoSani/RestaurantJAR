@@ -33,12 +33,13 @@
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
-				{{-- <a href="index.html"><img src="{{asset('vendors/adminpage/admin/assets/img/logo-dark.png')}}" alt="Klorofil Logo" class="img-responsive logo"></a> --}}
+				<a href="#"><img src="{{ asset('./images/logo.jpg') }}" width="30px" height="30px" alt="Klorofil Logo" class="img-responsive logo"></a>
 			</div>
 			<div class="container-fluid">
 				<div class="navbar-btn">
 					<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
-				</div>
+                </div>
+                <h1>Admin</h1>
 			</div>
 		</nav>
 		<!-- END NAVBAR -->
