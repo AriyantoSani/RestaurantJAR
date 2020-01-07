@@ -32,9 +32,9 @@
                                     <tr>
                                         <th>Order Date</th>
                                         <th>Total Price</th>
-                                        <th>status</th>
-                                        <th>ammount</th>
-                                        <th>table name</th>
+                                        <th>Status</th>
+                                        <th>Amount</th>
+                                        <th>Table Name</th>
                                     </tr>
                                 </thead>
                                 <tbody>

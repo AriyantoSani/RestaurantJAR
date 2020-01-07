@@ -35,21 +35,24 @@
 	<div id="wrapper">
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
-			<div class="brand">
-				<a href="#"><img src="{{ asset('./images/logo.jpg') }}" width="30px" height="30px" alt="Klorofil Logo"
-						class="img-responsive logo"></a>
-
-				<p>Admin</p>
-			</div>
-			<div class="container-fluid">
-				<div class="navbar-btn">
+				<div class="brand">
+					<a href="#"><img src="{{ asset('./images/logo.jpg') }}" width="30px" height="30px" class="img-responsive logo"></a>
 				</div>
-				<a href="{{asset('logout')}}">
-					<p class="pull-right">Log Out</p>
-				</a>
-			</div>
-		</nav>
-		<!-- END NAVBAR -->
+				<div class="container-fluid">
+					
+					<div id="navbar-menu">
+						<ul class="nav navbar-nav navbar-right">	
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Admin</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+								<ul class="dropdown-menu">
+									<li><a href="{{asset('logout')}}"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<!-- END NAVBAR -->
 		<!-- LEFT SIDEBAR -->
 		<div id="sidebar-nav" class="sidebar">
 			<div class="sidebar-scroll">
@@ -86,7 +89,7 @@
 	<script type="text/javascript"
 		src="https://cdn.datatables.net/v/bs4/dt-1.10.20/b-1.6.1/b-print-1.6.1/r-2.2.3/datatables.min.js"></script>
 	@yield('js')
-	>>>>>>> add6daf88d13a7f620484ea097e2eeece7c03877
+	
 </body>
 
 </html>
