@@ -17,6 +17,7 @@
     <!-- Site Title -->
     <title>RestaurantJAR</title>
 
+    <link rel="icon" type="image/png" href="{{ asset('./images/logo.jpg') }}"/>
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i|Roboto:400,500" rel="stylesheet">
     <!--
 			CSS
@@ -41,12 +42,12 @@
             <div class="header-wrap">
                 <div class="header-top d-flex justify-content-between align-items-center navbar-expand-md">
                     <div class="col menu-left">
-                        <a class="{{ request()->is('home') ? 'active' : '' }}" href="home">Home</a>
-                        <a class="{{ request()->is('menu') ? 'active' : '' }}" href="menu">menu</a>
-                        <a class="{{ request()->is('about') ? 'active' : '' }}" href="about">about</a>
+                        <a class="{{ request()->is('home') ? 'active' : '' }}" href="{{ asset('home') }}">Home</a>
+                        <a class="{{ request()->is('menu') ? 'active' : '' }}" href="{{ asset('menu') }}">menu</a>
+                        <a class="{{ request()->is('about') ? 'active' : '' }}" href="{{ asset('about') }}">about</a>
                     </div>
                     <div class="col-3 logo">
-                        <a href="index.html"><img class="mx-auto" src="{{asset('./vendors/homepage/img/logo.png')}}"
+                        <a href="{{ asset('home') }}"><img class="mx-auto" src="{{asset('./images/logo.png')}}"
                                 alt=""></a>
                     </div>
                     <nav class="col navbar navbar-expand-md justify-content-end">
@@ -61,13 +62,13 @@
                         <div class="collapse navbar-collapse menu-right" id="collapsibleNavbar">
                             <ul class="navbar-nav justify-content-center w-100">
                                 <li class="nav-item hide-lg">
-                                    <a class="nav-link" href="index.html">Home</a>
+                                    <a class="nav-link" href="{{ asset('home') }}">Home</a>
                                 </li>
                                 <li class="nav-item hide-lg">
-                                    <a class="nav-link" href="menu.html">menu</a>
+                                    <a class="nav-link" href="{{ asset('menu') }}">menu</a>
                                 </li>
                                 <li class="nav-item hide-lg">
-                                    <a class="nav-link" href="about.html">about</a>
+                                    <a class="nav-link" href="{{ asset('about') }}">about</a>
                                 </li>
                                 <!-- Dropdown -->
                                 {{-- <li class="nav-item dropdown">
@@ -80,7 +81,7 @@
                                     </div>
                                 </li> --}}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="gallery">Gallery</a>
+                                    <a class="nav-link" href="{{ asset('gallery') }}">Gallery</a>
                                 </li>
                                 {{-- <li class="nav-item cta cta-colored"><a href="cart" class="nav-link"><span
                                             class="fa-shopping-cart"></span>[0]</a></li> --}}

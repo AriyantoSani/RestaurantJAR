@@ -11,6 +11,7 @@ class bookpageController extends Controller
 {
     public function index()
     {
-        return view('book');
+        $table = DB::table('table')->get();
+        return view('book' , ['table'=>$table]);
     }
 }

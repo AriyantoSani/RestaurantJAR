@@ -11,14 +11,19 @@ class homepageController extends Controller
 {
     public function index()
     {
+        Session::flush();
         return view('home');
     }
-    public function indexAbout()
+    public function indexMenu()
     {
-        return view('about');
+        return view('menu1');
     }
     public function indexGallery()
     {
         return view('gallery');
+    }
+    public function indexAbout()
+    {
+        return view('about');
     }
 }

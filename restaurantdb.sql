@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2020 at 10:46 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.3
+-- Generation Time: Jan 07, 2020 at 04:40 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `restaurantdb`
 --
-CREATE DATABASE IF NOT EXISTS `restaurantdb` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `restaurantdb`;
 
 -- --------------------------------------------------------
 
@@ -32,12 +30,20 @@ USE `restaurantdb`;
 
 CREATE TABLE `bill` (
   `id` int(11) NOT NULL,
-  `date` datetime NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `amount` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `paymentMethod_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `bill`
+--
+
+INSERT INTO `bill` (`id`, `date`, `amount`, `order_id`, `user_id`, `paymentMethod_id`) VALUES
+(1, '2020-01-07 03:29:41', 2, 2, 4, 1),
+(2, '2020-01-07 03:29:16', 3, 1, 4, 2);
 
 -- --------------------------------------------------------
 
@@ -51,18 +57,33 @@ CREATE TABLE `food` (
   `price` varchar(45) NOT NULL,
   `status` tinyint(4) NOT NULL,
   `food_category_id` int(11) NOT NULL,
-  `link` varchar(255) NOT NULL
+  `link` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `food`
 --
 
-INSERT INTO `food` (`id`, `name`, `price`, `status`, `food_category_id`, `link`) VALUES
-(1, 'ganja', '15', 1, 2, 'https://asset.kompas.com/crops/nK5zyyFrJybdFUzWBqKKyY5D8Z0=/0x14:900x614/750x500/data/photo/2018/01/11/2038683000.jpg'),
-(2, 'baygon', '25', 1, 5, 'https://cf.shopee.co.id/file/7ed4e40b779e492313c3626759e8564b'),
-(3, 'obat obatan', '75', 1, 3, 'https://awsimages.detik.net.id/visual/2015/01/20/c6ff8067-94d5-494d-9aa4-f063846e526d_169.jpg?w=650'),
-(4, 'racun tikus', '30', 1, 1, 'https://s1.bukalapak.com/img/1587550021/w-1000/DORA_RACUN_TIKUS_AMPUH_MATI_DITEMPAT_TERANG.jpg');
+INSERT INTO `food` (`id`, `name`, `price`, `status`, `food_category_id`, `link`, `description`) VALUES
+(1, 'Salad', '7000', 1, 1, 'https://www.onceuponachef.com/images/2019/07/Big-Italian-Salad-760x983.jpg', ''),
+(2, 'Ketoprak', '7000', 0, 1, 'https://www.masakapahariini.com/wp-content/uploads/2018/08/ketoprak-MAHI-2.jpg', ''),
+(3, 'Gado-gado', '8000', 1, 1, 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Gado_gado.jpg/1200px-Gado_gado.jpg', ''),
+(4, 'Pudding', '5000', 0, 1, 'https://www.yummytummyaarthi.com/wp-content/uploads/2017/08/1-9.jpg', ''),
+(5, 'Pecel', '8000', 1, 1, 'https://sifu.unileversolutions.com/image/id-ID/recipe-topvisual/2/1260-709/pecel-madiun-50447633.jpg', ''),
+(6, 'Indomie Goreng', '8000', 1, 2, 'https://cdn0-production-images-kly.akamaized.net/ZRydGFEA6M2KwFUiZQti1bCkUSQ=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2964333/original/040327100_1573470874-15876789_791554644317395_266044254432788480_n.jpg', ''),
+(7, 'Ayam Goreng', '10000', 1, 2, 'https://selerasa.com/wp-content/uploads/2015/12/images_daging_ayam-goreng.jpg', ''),
+(8, 'Nasi Goreng', '11000', 0, 2, 'https://www.masakapahariini.com/wp-content/uploads/2019/01/nasi-goreng-jawa-620x440.jpg', ''),
+(9, 'Bakmi Ayam', '12000', 1, 2, 'https://selerasa.com/wp-content/uploads/2015/05/images_mie_Mie_ayam_14-mie-ayam-kampung.jpg', ''),
+(10, 'Cumi Balado', '12000', 0, 2, 'https://img-global.cpcdn.com/recipes/65a9c303f2668371/751x532cq70/cumi-balado-foto-resep-utama.jpg', ''),
+(11, 'Dadar Gulung', '12000', 1, 3, 'https://asset-a.grid.id/crop/0x0:0x0/700x465/photo/2019/03/13/3822778270.jpg', ''),
+(12, 'Mochi', '12000', 1, 3, 'https://truffle-assets.imgix.net/b2dc7846-1549_neopolitanstrawberrymochi_land1.jpg', ''),
+(13, 'Gelato', '10000', 1, 3, 'https://awsimages.detik.net.id/community/media/visual/2018/03/18/5f2f1cd8-f3cf-4f92-b802-ebd63f84c42c.jpeg?w=700&q=90', ''),
+(14, 'Teh Manis', '3000', 1, 2, 'https://cdn0-production-images-kly.akamaized.net/lB-Z7YU-uhhDBYNgjohOBCtzbGk=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/804508/original/057982300_1422864990-mint-tea.jpg', ''),
+(15, 'Milo', '6000', 1, 2, 'http://3.bp.blogspot.com/_C5mYKN-2Akk/TNZYYGwYwTI/AAAAAAAAAAM/Mg1iAlMbcBo/s1600/milo.jpg', ''),
+(16, 'Jeruk', '6000', 1, 2, 'https://cdn0-production-images-kly.akamaized.net/xfj7ph2Ja-9mO1-38Q_qJUnhwT4=/17x0:926x512/640x360/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2247300/original/097384400_1528762027-Es_jeruk-pinteest.jpg', ''),
+(17, 'Nutrisari', '5000', 1, 2, 'https://s2.bukalapak.com/img/7923267261/w-1000/PhotoGrid_1505362693195_scaled.jpg', ''),
+(18, 'Jus Mangga', '8000', 1, 2, 'https://hellosehat.com/wp-content/uploads/2019/03/shutterstock_1265282248.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -80,11 +101,10 @@ CREATE TABLE `foodcategory` (
 --
 
 INSERT INTO `foodcategory` (`id`, `name`) VALUES
-(1, 'racun'),
-(2, 'narkotika'),
-(3, 'pil'),
-(4, 'minuman keras'),
-(5, 'obat nyamuk');
+(1, 'Appetizer'),
+(2, 'Main Course'),
+(3, 'Desert'),
+(4, 'Beverage');
 
 -- --------------------------------------------------------
 
@@ -106,17 +126,9 @@ CREATE TABLE `order` (
 --
 
 INSERT INTO `order` (`id`, `order_date`, `total_price`, `status`, `amount`, `table_id`) VALUES
-(1, '2020-01-05 20:41:06', 25, 1, 25, 1),
-(2, '2020-01-05 20:48:57', 15, 1, 15, 1),
-(3, '2020-01-05 20:49:03', 25, 1, 25, 1),
-(4, '2020-01-05 20:49:45', 75, 1, 75, 1),
-(5, '2020-01-05 20:50:33', 15, 1, 15, 1),
-(6, '2020-01-05 20:51:23', 25, 1, 25, 1),
-(7, '2020-01-05 20:51:25', 25, 1, 25, 1),
-(8, '2020-01-05 20:51:28', 25, 1, 25, 1),
-(9, '2020-01-05 20:54:43', 15, 1, 15, 1),
-(10, '2020-01-05 20:57:53', 25, 1, 25, 1),
-(11, '2020-01-05 21:14:29', 75, 1, 75, 1);
+(1, '2020-01-07 03:31:50', 21000, 0, 3, 1),
+(2, '2020-01-07 03:33:08', 20000, 0, 2, 3),
+(3, '2020-01-07 03:33:12', 17000, 0, 2, 5);
 
 -- --------------------------------------------------------
 
@@ -128,20 +140,22 @@ CREATE TABLE `orderdetail` (
   `id` int(11) NOT NULL,
   `food_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL
+  `quantity` int(11) NOT NULL,
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `orderdetail`
 --
 
-INSERT INTO `orderdetail` (`id`, `food_id`, `order_id`, `quantity`) VALUES
-(1, 2, 6, 1),
-(2, 2, 7, 1),
-(3, 2, 8, 1),
-(4, 1, 9, 1),
-(5, 2, 10, 1),
-(6, 3, 11, 1);
+INSERT INTO `orderdetail` (`id`, `food_id`, `order_id`, `quantity`, `status`) VALUES
+(1, 6, 1, 1, 2),
+(2, 7, 1, 1, 2),
+(3, 14, 1, 1, 0),
+(4, 9, 2, 2, 0),
+(5, 18, 2, 2, 0),
+(6, 8, 3, 1, 0),
+(7, 16, 3, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -166,6 +180,15 @@ CREATE TABLE `paymentmethod` (
   `name` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `paymentmethod`
+--
+
+INSERT INTO `paymentmethod` (`id`, `name`) VALUES
+(1, 'Cash'),
+(2, 'Credit'),
+(3, 'e-Money');
+
 -- --------------------------------------------------------
 
 --
@@ -182,9 +205,11 @@ CREATE TABLE `role` (
 --
 
 INSERT INTO `role` (`id`, `name`) VALUES
-(1, 'guest'),
-(2, 'admin'),
-(3, 'cashier');
+(1, 'Guest'),
+(2, 'Admin'),
+(3, 'Cashier'),
+(4, 'Waiter'),
+(5, 'Kitchen');
 
 -- --------------------------------------------------------
 
@@ -203,7 +228,16 @@ CREATE TABLE `table` (
 --
 
 INSERT INTO `table` (`id`, `no_table`, `status`) VALUES
-(1, '01', 1);
+(1, '01', 0),
+(2, '02', 0),
+(3, '03', 0),
+(4, '04', 0),
+(5, '05', 0),
+(6, '06', 0),
+(7, '07', 0),
+(8, '08', 0),
+(9, '09', 0),
+(10, '10', 0);
 
 -- --------------------------------------------------------
 
@@ -227,7 +261,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `phone_number`, `role_id`) VALUES
-(2, '1772046', 'ea7966f90de2bf520e3f0042053e6ec3', 'Ariyanto', 'Sani', 'ariyantosani555@gmail.com', '082316997753', 2);
+(2, '1772046', 'ea7966f90de2bf520e3f0042053e6ec3', 'Ariyanto', 'Sani', 'ariyantosani555@gmail.com', '082316997753', 3),
+(3, '1772044', 'be874a520136497ccfd1f74cad11a3bc', 'Roy', 'Parsaoran', 'roy@gmail.com', '08123456789', 2),
+(4, '1772004', '5d55d24e5f82ec62c93946c644c1e049', 'Jonathan', 'Bernad', 'jonathan@gmail.com', '08123456789', 4),
+(5, '1772012', 'd16ce8d401952ef8449ed5d13408cdaf', 'Kafka', 'Febian', 'kafka@gmail.com', '08123456789', 5);
 
 --
 -- Indexes for dumped tables
@@ -310,13 +347,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `bill`
 --
 ALTER TABLE `bill`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `food`
 --
 ALTER TABLE `food`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `foodcategory`
@@ -328,13 +365,13 @@ ALTER TABLE `foodcategory`
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `orderdetail`
 --
 ALTER TABLE `orderdetail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `orderdetailtrack`
@@ -346,25 +383,25 @@ ALTER TABLE `orderdetailtrack`
 -- AUTO_INCREMENT for table `paymentmethod`
 --
 ALTER TABLE `paymentmethod`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `table`
 --
 ALTER TABLE `table`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

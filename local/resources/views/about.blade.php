@@ -24,21 +24,17 @@
 			<div class="row align-items-center">
 				<div class="col-lg-6 col-md-6">
 					<div class="">
-						<img class="img-fluid" src="img/about-img.jpg" alt="">
+						<img class="img-fluid" src="http://localhost/RestaurantJAR/./images/logo.png" alt="" width="400px">
 					</div>
 				</div>
 				<div class="offset-lg-1 col-lg-5 col-md-6">
 					<div class="section-title relative">
 						<h1>
-							About <br>
-							Rooftop <br>
-							Dinning
+							About
 						</h1>
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-							magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat. consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-							enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+							Website ini dibuat oleh Ariyanto Sani, Roy Parsaoran, dan Jonathan Bernad sebagai
+							syarat untuk memenuhi nilai mata kuliah Pemrograman Web 2.
 						</p>
 					</div>
 				</div>
@@ -93,17 +89,18 @@
 							Quotes
 						</h1>
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-							magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat. consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-							enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Quotes
+							"Seorang koki sejati tidak akan pernah membuang-buang bahan makanan yang tersisa" -Kafka Febianto<br><br>
+
+							"Jangan pernah membuat kebisingan ketika sedang makan makananmu" -Avinash<br><br>
+
+							"Semua orang sudah tau bahwa seorang koki yang banyak bicara di dapur itu, tidak punya kemampuan!" -Zaldy Auw
 						</p>
-						<img src="img/signature.png" class="img-fluid" alt="">
+						<img src="" alt="">
 					</div>
 				</div>
 				<div class="offset-lg-1 col-lg-6 col-md-6">
 					<div>
-						<img class="chef-img" src="img/chefs-quotes.jpg" class="img-fluid" alt="">
+						<img class="chef-img" src="https://gastronomyaficionado.files.wordpress.com/2014/09/yono-purnomo-1.jpg?w=1200" class="img-fluid" alt="" width="500px">
 					</div>
 				</div>
 			</div>
