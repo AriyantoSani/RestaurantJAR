@@ -44,6 +44,36 @@ class adminController extends Controller
             ->with('dataMenu', $dataMenu)
             ->with('dataCatFood', $dataCatFood);
     }
+    public function insertFoodCategory(Request $req)
+  {
+        
+        // dd($req->input('namaPertemuan'));
+        $Name = $req->input('Name');
+        $cat = DB::table('foodcategory')->insert([
+          'name' => $Name
+        ]);
+
+        if($cat){
+
+          $req->session()->flash('message', 'Berhasil menambahkan Account');
+        } else{
+          $req->session()->flash('error','Account Tidak Berhasil Ditambahkan');
+        }return redirect()->back() ;
+  }
+  public function deleteFoodCategory($id)
+  {
+    DB::delete('delete from foodcategory where id = ?',[$id]);
+    return redirect()->back() ;
+  }
+
+  public function editnamacategory(Request $req,$id)
+  {
+    DB::table('foodcategory')
+        ->where('id', $id)
+        ->update(['name' => $req->value]);
+    return redirect()->back() ;
+  }
+  ///////
     public function insertAccount(Request $req)
   {
         

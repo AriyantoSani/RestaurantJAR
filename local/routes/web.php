@@ -61,5 +61,8 @@ Route::group(
         Route::get('/account/{id}/delete', 'adminController@deleteAccount')->middleware('checkadmin');
         Route::get('/menuMaster', 'adminController@indexMenuMaster')->middleware('checkadmin');
         Route::post('/menuMaster/insert', 'adminController@insertMenuMaster')->middleware('checkadmin');
-        Route::get('/menuMaster/{id}/delete', 'adminController@deleteMenuMaster')->middleware('checkadmin');}
+        Route::get('/menuMaster/{id}/delete', 'adminController@deleteMenuMaster')->middleware('checkadmin');
+        Route::post('/menuMaster/insertCategory', 'adminController@insertFoodCategory')->middleware('checkadmin');
+        Route::get('/menuMaster/{id}/deleteCategory', 'adminController@deleteFoodCategory')->middleware('checkadmin');
+    }
 );

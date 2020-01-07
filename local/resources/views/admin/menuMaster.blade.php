@@ -72,7 +72,51 @@
         </div>
     </div>
 </div>
-
+<div class="main">
+        <div class="main-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12" >
+                        <div class="panel" >
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Manage Category Food</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal"
+                                        data-target="#exampleModal3">Add</button>
+                                </div>
+                                <table class="table table-hover" id="Datatables2">
+                                    <thead>
+                                        <tr>
+                                            <th>Category Name</th>
+                                            <th>#</th>
+    
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($dataCatFood as $dk ):
+                                            ?>
+                                        <tr>
+                                            <th><a href="#" class="ecat" data-type="text" data-pk="{{$dk->id}}" data-url="
+                                                    {{url('api/menuMaster/'.$dk->id.'/editnamacategory')}}
+                                                " data-title="Masukan Nilai">{{ $dk->name }}</a></th>
+                                            </th>
+                                            {{-- <th>
+                                                <a href="{{url('menuMaster/'.$dk->id.'/deleteCategory')}}"
+                                                    class="btn btn-danger btn-sm">Delete</a>
+                                            </th> --}}
+                                        </tr>
+                                        <?php  endforeach ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -147,6 +191,47 @@
         </div>
     </div>
 
+{{--  --}}
+<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="exampleModalLabel">Input Category </h1>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{url('menuMaster/insertCategory')}}">
+                    {{csrf_field()}}
+                    <div class="form-group">
+                        <label for="Name">Name</label>
+                        <input type="text" class="form-control" id="Name" name="Name" placeholder="Name" required>
+                    </div>
+                    <button type="submit" name="save" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- <div class="modal fade" id="confirm-delete2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Confirmation
+                </div>
+                <div class="modal-body">
+                    Are you sure want to delete this Menu?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-danger btn-ok">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div> --}}
+
 @stop
 
 @section('js')
@@ -171,13 +256,20 @@
     $(document).ready(function() {
         $('.edesc').editable();
     });
+    $(document).ready(function() {
+        $('.ecat').editable();
+    });
     $('#confirm-delete').on('show.bs.modal', function(e) {
     $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+    // $('#confirm-delete2').on('show.bs.modal', function(e) {
+    // $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 });
 </script>
       <script>
             $(document).ready( function () {
        $('#Datatables').DataTable();
+   } );$(document).ready( function () {
+       $('#Datatables2').DataTable();
    } );
          </script>
 @endsection

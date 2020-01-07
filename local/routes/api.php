@@ -25,6 +25,8 @@ Route::post('/account/{id}/editemail','adminController@editemail');
 Route::post('/account/{id}/editphone','adminController@editphone');
 Route::post('/account/{id}/editrole','adminController@editrole');
 
+Route::post('/menuMaster/{id}/editnamacategory','adminController@editnamacategory');
+
 Route::post('/menuMaster/{id}/editnamamenu','adminController@editnamamenu');
 Route::post('/menuMaster/{id}/editprice','adminController@editprice');
 Route::post('/menuMaster/{id}/editstatus','adminController@editstatus');
