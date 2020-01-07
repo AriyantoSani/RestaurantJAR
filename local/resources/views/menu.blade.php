@@ -76,7 +76,7 @@
         </div>
         <?php if ($status == 1) {
         ?>
-        <a href="{{ asset('updateOrder/'.$id) }} ">
+        <a href="{{ asset('menu/updateOrder/'.$id) }} ">
             <button class="btn btn-primary">Update</button>
         </a>
         <a href="{{asset('/orderlist/'.$id)}}"> <button type="button" class="btn btn-primary">Order List</button></a>
