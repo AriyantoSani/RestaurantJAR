@@ -16,7 +16,8 @@
     <meta charset="UTF-8">
     <!-- Site Title -->
     <title>RestaurantJAR</title>
-	<link rel="icon" type="image/png" href="./images/logo.jpg"/>
+
+    <link rel="icon" type="image/png" href="{{ asset('./images/logo.jpg') }}"/>
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i|Roboto:400,500" rel="stylesheet">
     <!--
 			CSS

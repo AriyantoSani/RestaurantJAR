@@ -12,8 +12,13 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10 mb-5 text-center">
+                <?php if($cart != NULL){
+                    echo "<b>Order Cart : </b>";
+                    foreach($cart  as $c){
+                    ?>
+                    {{ $c }}
+                    <?php }} ?>
                 <ul class="product-category">
-
                     <li><a href="{{asset('table/'.$id)}}"
                             class="{{request()->is('table/'.$id) ? 'active' : ''}}">All</a></li>
                     <?php foreach ($category as $cat) {
